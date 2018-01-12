@@ -4,8 +4,7 @@
 </head>
 <body>
 <h1>Mi primera pagina en Amazon</h1>
-<h1>Mi primera pagina en Amazon</h1>
-<p>Esto es una prueba</p>
+<p>Esto es una prueba de GIT</p>
 </body>
 
 </html>
