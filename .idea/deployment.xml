@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="Amazon AWS" uploadOnCheckin="d3475900-6453-48ae-8e79-dd6b0a3e8232" showEqualInSync="true" showNewOnSourceInSync="false">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="Amazon AWS" showEqualInSync="true" showNewOnSourceInSync="false">
     <serverData>
       <paths name="Amazon AWS">
         <serverdata>
@@ -10,7 +10,6 @@
         </serverdata>
       </paths>
     </serverData>
-    <option name="myUploadOnCheckinName" value="Amazon AWS" />
     <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
   </component>
 </project>
