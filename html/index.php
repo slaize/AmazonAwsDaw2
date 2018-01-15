@@ -7,8 +7,7 @@
 <p>Esto es una prueba</p>
 <p>Esto es una prueba</p>
 <p>Esto es una prueba</p>
-<p>Esto es una prueba</p>
-<p>Esto es una prueba</p>
+
 <p>Esto es una prueba</p>
 </body>
 
