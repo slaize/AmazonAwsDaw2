@@ -14,8 +14,14 @@ class Contacto{
         $this->email = $miEmail;
     }
 
-    function setEmail($miEmail){
+    // Establecemos el email
+    public function setEmail($miEmail){
         $this->email = $miEmail;
+    }
+
+    // Recuperamos el email
+    public function getEmail (){
+        return $this->email;
     }
 
 }
