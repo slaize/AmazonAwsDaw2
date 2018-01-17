@@ -4,7 +4,8 @@ echo "<h1>Introduccion a la programacion orientada a objetos </h1>";
 echo "<h2>Ejemplo 1: definir e instanciar clases </h2>";
 
 //Como crear o definir una clase
-class Contacto{
+class Contacto
+{
 
     // Variables o atributos
     var $nombre;
@@ -14,15 +15,17 @@ class Contacto{
 
     //Funciones o metodos
 
-        // funcion para establecer el nombre
-        function setNombre($miNombre){
-            $this->nombre = $miNombre;
-        }
+    // funcion para establecer el nombre
+    function setNombre($miNombre)
+    {
+        $this->nombre = $miNombre;
+    }
 
-        // funcion para recuperar el nombre
-        function getNombre(){
-            return $this->nombre;
-        }
+    // funcion para recuperar el nombre
+    function getNombre()
+    {
+        return $this->nombre;
+    }
 }
 
 //Instanciar o utilizar la clase

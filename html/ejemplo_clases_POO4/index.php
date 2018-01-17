@@ -5,7 +5,7 @@ echo "<h2>Ejemplo 4: Modelo Vista Controlador</h2>";
 
 // Incluyo los archivos necesarios
 require("./controller/ContactoController.php");
-require ("./model/Contacto.php");
+require("./model/Contacto.php");
 
 //Instancio el controlador
 $controller = new ContactoController;

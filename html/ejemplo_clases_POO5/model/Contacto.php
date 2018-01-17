@@ -1,5 +1,7 @@
 <?php
-class Contacto{
+
+class Contacto
+{
     // Variables o atributos
     var $nombre;
     var $apellidos;
@@ -7,7 +9,8 @@ class Contacto{
     var $email;
 
     //Metodo constructor nuevo
-    function __construct($miNombre,$misApellidos,$miEdad,$miEmail){
+    function __construct($miNombre, $misApellidos, $miEdad, $miEmail)
+    {
         $this->nombre = $miNombre;
         $this->apellidos = $misApellidos;
         $this->edad = $miEdad;
@@ -15,12 +18,14 @@ class Contacto{
     }
 
     // Establecemos el email
-    public function setEmail($miEmail){
+    public function setEmail($miEmail)
+    {
         $this->email = $miEmail;
     }
 
     // Recuperamos el email
-    public function getEmail (){
+    public function getEmail()
+    {
         return $this->email;
     }
 

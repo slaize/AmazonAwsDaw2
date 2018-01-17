@@ -8,15 +8,15 @@ echo "<h2>Ejemplo 3: Instanciar una clase externa</h2>";
 require_once("Contacto.php");
 
 //Instanciar la clase
-$mi_contacto = new Contacto("Sergio","Collazos Sales",29,"");
+$mi_contacto = new Contacto("Sergio", "Collazos Sales", 29, "");
 
 echo "El contacto se llama: " . $mi_contacto->nombre . " " . $mi_contacto->apellidos;
 
 //Asigno valores a los datos de dos formas:
-    //Forma 1:
-    $mi_contacto->setEmail("slaize@gmail.com");
+//Forma 1:
+$mi_contacto->setEmail("slaize@gmail.com");
 
-    //Forma 2:
-    $mi_contacto->email = "slaize@gmail.com";
+//Forma 2:
+$mi_contacto->email = "slaize@gmail.com";
 
 echo "El mail del contacto es: " . $mi_contacto->email;

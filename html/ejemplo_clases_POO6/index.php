@@ -1,10 +1,14 @@
 <?php
 
+namespace App;
+
+use App\Controller\ContactoController;
+
 echo "<h1>Introduccion a la programacion orientada a objetos </h1>";
-echo "<h2>Ejemplo 5: Modelo Vista Controlador con 'Autoload'</h2>";
+echo "<h2>Ejemplo 6: Modelo Vista Controlador con 'Namespaces'</h2>";
 
 // Defino la funcion que autocargara las clases cuando se instancien
-spl_autoload_register('autoload');
+spl_autoload_register('App\autoload');
 
 
 function autoload($clase, $dir = null)
@@ -20,14 +24,11 @@ function autoload($clase, $dir = null)
         //Si es un directorio (y no es de sistema), busco la clase dentro de él
         if (is_dir($dir . "/" . $file) AND substr($file, 0, 1) !== '.') {
             autoload($clase, $dir . "/" . $file);
-        } //Si es archivo y el nombre coincide con la clase
-        else if (is_file($dir . "/" . $file) AND $file == $clase . ".php") {
-            //echo $clase.""; //para ver cuales ha cargado
+        } //Si es archivo y el nombre coincide con la clase (quitando el namespace)
+        else if (is_file($dir . "/" . $file) AND $file == substr(strrchr($clase, "\\"), 1) . ".php") {
             require($dir . "/" . $file);
         }
-
     }
-
 }
 
 // Instancio el controlador

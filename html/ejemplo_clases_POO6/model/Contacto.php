@@ -1,4 +1,5 @@
 <?php
+namespace App\Model;  //App sería el nombre del proyecto y Model la carpeta que lo tiene
 
 class Contacto
 {
