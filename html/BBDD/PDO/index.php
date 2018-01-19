@@ -102,3 +102,16 @@ foreach ($nombres as $nombre){
     $resultado->bindParam(1, $nombre); //O bien $resultado->bind_param(':nombre', $nombre);
     $resultado->execute();
 }
+
+// Excepciones
+echo "Excepciones";
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+try {
+    $resultado = $db->query("SELECT * FROM persoma");
+}
+catch (PDOException $p) {
+    echo "Error ".$p->getMessage()."";
+}
+
+//Destruimos la conexion
+$db = null; // Ó unset($db);
