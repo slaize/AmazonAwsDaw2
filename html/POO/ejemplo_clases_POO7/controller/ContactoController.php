@@ -13,8 +13,9 @@ class ContactoController
         $contacto->setEmail("slaize@gmail.com");
 
         //Instancio el ViewHelper
+
         $view = new ViewHelper();
-        //Paso los datos
+
         $view->vista("index",$contacto);
     }
 
