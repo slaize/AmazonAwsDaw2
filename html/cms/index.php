@@ -1,8 +1,10 @@
 <?php
-
 namespace App;
 
 use App\Controller\ContactoController;
+
+//Conexion a la BBDD
+require ('conexion.php');
 
 echo "<h1>Introduccion a la programacion orientada a objetos </h1>";
 echo "<h2>Ejemplo 7: Gestión de las vistas mediante 'helpers'</h2>";
