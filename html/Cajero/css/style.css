@@ -1,0 +1,130 @@
+body{
+    background-color: #08A3DB;
+    background-image: url("../img/fondo.jpg");
+}
+
+h1{
+    border: 2px solid #111111;
+    background-color: azure;
+    font-size: 3.5em;
+    color: darkgreen;
+    text-align: center;
+}
+h2,.euro{
+    font-family: 'VT323', monospace;
+    color: yellow;
+    font-size: 2.5em;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+#valorIntroducido{
+    font-family: 'VT323', monospace;
+    color: yellow;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+#introduzcaPIN{
+    font-family: 'VT323', monospace;
+    color: yellow;
+    font-size: 3em;
+    text-align: center;
+}
+
+#botonPin{
+    /*margin: 10px 42%;*/
+    padding: 10px;
+    display: block;
+    margin : 30px auto 10px;
+    font-size: large;
+
+}
+
+#valorIngreso, #valorSaldo, #valorRetirada,#campoPin {
+    font-family: 'VT323', monospace;
+    color: yellow;
+    font-size: 2.5em;
+    background-color: darkblue;
+    text-align: right;
+    border: 1px solid transparent;
+    width: 125px;
+}
+
+#valorIngreso{
+    font-size: 1.5em;
+}
+#campoPin{
+    text-align: center;
+    width: 250px;
+    display: block;
+    font-size: 2.5em;
+    margin : 0 auto 10px;
+    border: 2px solid yellow;
+}
+
+#valorRetirada{
+    width: 200px;
+}
+
+#accionIngresar,#accionRetirar{
+    padding: 10px;
+    font-size:large ;
+
+}
+#cuadro{
+    background-color: darkblue;
+    border: 5px solid yellow;
+    width: 60%;
+    height: 500px;
+    margin: 5% auto;
+}
+.billete {
+    width: 150px;
+    padding: 5px;
+    margin-left: 25px;
+}
+
+#comprobacion {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+}
+
+
+#botones {
+    width: 90%;
+    display: none;
+    margin: 3% auto;
+}
+
+#salir{
+    float: right;
+    font-size: large;
+    background-color: #e05252;
+    color: honeydew;
+    padding: 5px;
+}
+
+#cajaIngreso {
+    padding: 5px;
+    margin: 5px 10px;
+    display: none;
+}
+
+#cajaSaldo {
+    padding: 5px;
+    margin: 10px;
+    display: none;
+}
+
+#cajaRetirada {
+    padding: 5px;
+    margin: 10px;
+    display: none;
+}
+
+#consultaSaldo, #retirada, #ingreso{
+    font-size: large;
+    padding: 5px;
+    margin-left: 5px;
+}

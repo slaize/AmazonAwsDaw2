@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <title>Practica cajero con OBJETOS</title>
+    <script>
+        $(function () { //Funcion onload jQuery
+
+            // Funcion para limpiar el numero de la cuenta de la cookie
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            var cookieCuenta = ""; // Almacenara el numero de cuenta para efectuar las operaciones
+
+            // Constructor del objeto cuenta
+            function CrearCuenta(saldo, numeroCuenta, codigoPin) {
+                this.saldo = saldo;
+                this.numeroCuenta = numeroCuenta;
+                this.codigoPin = codigoPin;
+                this.consultaSaldo = function () { //Esta funcion devolvera el saldo actual en cada momento
+                    return this.saldo
+                }
+                this.ingreso = function (importe) {//Esta funcion ingresara el dinero marcado en la cuenta
+                    this.saldo += importe;
+                }
+                this.retirar = function (importe) { //Esta funcion retirara el dinero de la cuenta siempre que haya saldo para hacerlo
+                    if (importe > saldo) {  // En caso de que no lo haya se mostrara un alert que bloquera la operacion, en caso contrario se realizara
+                        alert("Saldo insuficiente");
+                    } else {
+                        this.saldo -= importe;
+                        alert("Operacion realizada correctamente");
+                    }
+                }
+                this.validarPin = function (pin) { //Esta funcion comprueba que el pin introducido es correcto
+                    if (this.codigoPin == pin) {
+                        correcto = 1;
+                        document.cookie = "cuenta = " + this.numeroCuenta; //Setteamos la cookie cuenta
+                        cookieCuenta = getCookie("cuenta"); //extraemos el numero de cuenta mediante la funcion getCookie
+                    }
+                }
+            }
+
+            // Creamos las 5 cuentas
+            var cuenta1 = new CrearCuenta(1500, "1", "12345678");
+            var cuenta2 = new CrearCuenta(8547, "2", "23456789");
+            var cuenta3 = new CrearCuenta(26720, "3", "01234567");
+            var cuenta4 = new CrearCuenta(1201, "4", "34567890");
+            var cuenta5 = new CrearCuenta(8240, "5", "45678901");
+
+            //Creamos y rellenemaos el array con los objetos cuenta
+            var a = [];
+            a.push(cuenta1, cuenta2, cuenta3, cuenta4, cuenta5);
+
+            // Funcion de comprobacion de codigo PIN
+            $("button").click(function (e) {
+                if (e.target.id == "botonPin") {
+                    correcto = 0; // variable con funcion boolean
+                    $("#campoPin").focus;
+                    $("#campoPin").css("border", "1px solid yellow");
+
+                    // Recupero el valor del campo texto y recorro el array en busqueda de la coincidencia
+                    var pinIntro = $("#campoPin").val();
+                    for (var i = 0; i < a.length; i++) {
+                        a[i].validarPin(pinIntro);
+                    }
+                    if (correcto == 0) { //Si nuestra variable de control sigue a 0, es que no hay coincidencia
+                        alert("Código erroneo, vuelva a intentarlo");
+                        $("#campoPin").val('');
+                    } else { // En caso de que no siga a 0 se desbloquea el siguiente menu y se oculta el de comprobacion
+                        $("#botones").css("display", "block");
+                        $("#comprobacion").css("display", "none");
+                    }
+                }
+            });
+
+            //Muesta cajas de ingraso,saldo y retirada segun sea necesario
+            $("#consultaSaldo").click(function () {
+                //cuando pulsamos sobre el boton de consulta de saldo
+                // Con este swicth en funcion de que cuenta haya sido la loggeada se muestra el saldo disponible en pantalla
+                switch (cookieCuenta) {
+                    case '1':
+                        $("#valorSaldo").val(cuenta1.consultaSaldo());
+                        break;
+                    case '2':
+                        $("#valorSaldo").val(cuenta2.consultaSaldo());
+                        break;
+                    case '3':
+                        $("#valorSaldo").val(cuenta3.consultaSaldo());
+                        break;
+                    case '4':
+                        $("#valorSaldo").val(cuenta4.consultaSaldo());
+                        break;
+                    case '5':
+                        $("#valorSaldo").val(cuenta5.consultaSaldo());
+                        break;
+                }
+                // Solo le muestra el bloque de saldo, los otros dos se ocultan
+                $("#cajaSaldo").css("display", "block");
+                $("#cajaIngreso").css("display", "none");
+                $("#cajaRetirada").css("display", "none");
+            });
+
+            $("#ingreso").click(function () {
+                // al clickar sobre el boton ingreso,Solo le muestra el bloque de ingreso, los otros dos se ocultan
+                $("#cajaSaldo").css("display", "none");
+                $("#cajaIngreso").css("display", "block");
+                $("#cajaRetirada").css("display", "none");
+            });
+
+            $("#accionIngresar").click(function () {
+                var importe = $("#valorIngreso").val() * 1; // creamos una variable con el importe y lo hacemos valor integer
+
+                // Con este swicth en funcion de que cuenta haya sido la loggeada se ingresa el saldo en dicha cuenta
+                switch (cookieCuenta) {
+                    case '1':
+                        cuenta1.ingreso(importe);
+                        break;
+                    case '2':
+                        cuenta2.ingreso(importe);
+                        break;
+                    case '3':
+                        cuenta3.ingreso(importe);
+                        break;
+                    case '4':
+                        cuenta4.ingreso(importe);
+                        break;
+                    case '5':
+                        cuenta5.ingreso(importe);
+                        break;
+                }
+                ;
+                $("#valorIngreso").val(''); // se vuelve el valor de input a vacio para volver a usarlo si se desea
+            });
+
+            $("#retirada").click(function () {
+                // al clickar sobre el boton ingreso,Solo le muestra el bloque de ingreso, los otros dos se ocultan
+                $("#cajaSaldo").css("display", "none");
+                $("#cajaIngreso").css("display", "none");
+                $("#cajaRetirada").css("display", "block");
+
+                // Con estas dos primeras lineas de jQuery llevo el foco al campo del pin para que resalte con el fondo
+                // y le pongo un borde amarillo para ver el input
+                $("#valorRetirada").focus;
+                $("#valorRetirada").css("border", "1px solid yellow")
+            });
+
+            $("#accionRetirar").click(function () {
+                var importe = $("#valorRetirada").val() * 1;// creamos una variable con el importe y lo hacemos valor integer
+
+                // Con este swicth en funcion de que cuenta haya sido la loggeada se retira el saldo en dicha cuenta
+                // (siempre que sea posible por saldo del cliente)
+                switch (cookieCuenta) {
+                    case '1':
+                        cuenta1.retirar(importe);
+                        break;
+                    case '2':
+                        cuenta2.retirar(importe);
+                        break;
+                    case '3':
+                        cuenta3.retirar(importe);
+                        break;
+                    case '4':
+                        cuenta4.retirar(importe);
+                        break;
+                    case '5':
+                        cuenta5.retirar(importe);
+                        break;
+                }
+                ;
+
+                $("#valorRetirada").val('');//se vuelve el valor de input a vacio para volver a usarlo si se desea
+
+            });
+
+
+            $("#salir").click(function () { // Al clickar sobre salir se borra la cookie de cuenta y se recarga la pagina
+                document.cookie = "cuenta=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+                location.reload();
+            });
+
+            //Funcionalidad suma de billetes
+            $("#10").click(function () {  //Billete de 10
+                var num = +$("#valorIngreso").val() + 10;
+                $("#valorIngreso").val(num);
+
+            });
+            $("#20").click(function () {//Billete de 20
+                var num = +$("#valorIngreso").val() + 20;
+                $("#valorIngreso").val(num);
+
+            });
+            $("#50").click(function () { //Billete de 50
+                var num = +$("#valorIngreso").val() + 50;
+                $("#valorIngreso").val(num);
+
+            });
+        });
+
+    </script>
+</head>
+<body id="body">
+<h1>Practica Cajero</h1>
+<div id="cuadro">
+    <div id="comprobacion">
+        <div id="subcomprobacion">
+            <p id="introduzcaPIN">Introduzca su código PIN</p>
+            <input type="text" id="campoPin">
+            <button id="botonPin">Comprobar</button>
+        </div>
+
+    </div>
+    <div id="botones">
+        <button type="button" id="consultaSaldo">Consultar saldo</button>
+        <button type="button" id="retirada">Retirada de efectivo</button>
+        <button type="button" id="ingreso">Ingreso de efectivo</button>
+        <button type="button" id="salir">Salir</button>
+
+    </div>
+
+    <div id="cajaSaldo">
+        <h2>El saldo disponible en la cuenta es de:</h2>
+        <input type="text" id="valorSaldo" readonly><span class="euro">,00&nbsp;€</span>
+    </div>
+
+    <div id="cajaIngreso">
+        <h2>Seleccione el importe a ingresar:</h2>
+        <div id="billetes">
+            <img class="billete" id="10" src="img/10.jpg">
+            <img class="billete" id="20" src="img/20.jpg">
+            <img class="billete" id="50" src="img/50.jpg">
+        </div>
+        <p id="valorIntroducido">Valor introducido: <input type="text" id="valorIngreso" readonly> €</p>
+        <button type="button" id="accionIngresar">Confirmar importe</button>
+    </div>
+
+    <div id="cajaRetirada">
+        <h2>Introduzca el importe a retirar:</h2>
+        <input type="text" id="valorRetirada"><span class="euro">&nbsp;€</span>
+        <br><br>
+        <button type="button" id="accionRetirar">Confirmar importe</button>
+    </div>
+</div>
+</body>
+</html>
