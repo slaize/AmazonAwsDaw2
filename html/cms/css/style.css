@@ -1,0 +1,39 @@
+#cajaLogin{
+    border: 0.2px solid black;
+    width: 47%;
+    height: 415px;
+    margin: 5% auto;
+}
+
+#usuario,#contrasena{
+    text-align: center;
+    width: 250px;
+    display: block;
+    margin : 5px auto 20px;
+    border: 2px solid black;
+}
+
+#botonLogin{
+    display: block;
+    margin : 10px auto 0;
+}
+
+.usuarioContrasena{
+    margin: 0;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+#textoLogin{
+    padding: 10px;
+    text-align: center;
+    font-size: 1.1em;
+
+}
+
+#avatar{
+    width: 100px;
+    border-radius: 100px;
+    display: block;
+    margin : 15px auto 10px;
+}
