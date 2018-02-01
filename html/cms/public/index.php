@@ -1,11 +1,14 @@
 <?php
 namespace App;
+session_start();
 
 use App\Controller\UsuarioController;
 
-//Conexion a la BBDD
-echo "<h1>CMS</h1>";
+// Localizamos la base de la url
+$public = '/cms/public/';
 
+//Llamo a la cabecera
+require("../view/partials/header.php");
 
 
 // Defino la funcion que autocargara las clases cuando se instancien
@@ -17,7 +20,8 @@ function autoload($clase, $dir = null)
 
     //Directorio raíz de mi proyecto (ruta absoluta)
     if (is_null($dir)) {
-        $dir = realpath(dirname(__FILE__));
+        $dirname = str_replace('/public', '', dirname(__FILE__));
+        $dir = realpath($dirname);
     }
 
     //Escaneo en busca de la clase de forma recursiva
@@ -32,8 +36,25 @@ function autoload($clase, $dir = null)
     }
 }
 
+// Compruebo que ruta me estan pidiendo
+$home = '/cms/public/index.php/';
+$final_url = str_replace($home, '', $_SERVER["REQUEST_URI"]);
+
+//Enruto a panel
+if($final_url == 'panel'){
+    // Instancio el controlador
+    $controller = new UsuarioController;
+
+    // Le mando al panel de acceso
+    $controller->acceso();
+}
+/*
 // Instancio el controlador
 $controller = new UsuarioController;
 
 // Ejecuto el metodo por defecto del controlador
 $controller->index();
+*/  //Dentro esta la llamada al usuario controller
+
+//Llamo al pie
+require("../view/partials/footer.php");
