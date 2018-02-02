@@ -10,7 +10,6 @@ $public = '/cms/public/';
 //Llamo a la cabecera
 require("../view/partials/header.php");
 
-
 // Defino la funcion que autocargara las clases cuando se instancien
 spl_autoload_register('App\autoload');
 
@@ -40,21 +39,35 @@ function autoload($clase, $dir = null)
 $home = '/cms/public/index.php/';
 $final_url = str_replace($home, '', $_SERVER["REQUEST_URI"]);
 
-//Enruto a panel
-if($final_url == 'panel'){
-    // Instancio el controlador
-    $controller = new UsuarioController;
 
-    // Le mando al panel de acceso
-    $controller->acceso();
+//La guardo a la sesion
+$_SESSION['home'] = $home;
+
+
+// Enrutamientos
+switch($final_url){
+    case 'panel':
+        // Instancio el controlador
+        $controller = new UsuarioController;
+
+        // Le mando al panel de acceso
+        $controller->acceso();
+        break;
+    case 'panel/salir':
+        // Instancio el controlador
+        $controller = new UsuarioController;
+
+        // Le mando al panel de acceso
+        $controller->salir();
+        break;
+    case 'panel/usuarios':
+        // Instancio el controlador
+        $controller = new UsuarioController;
+
+        // Le mando al panel de acceso
+        $controller->index();
+        break;
 }
-/*
-// Instancio el controlador
-$controller = new UsuarioController;
-
-// Ejecuto el metodo por defecto del controlador
-$controller->index();
-*/  //Dentro esta la llamada al usuario controller
 
 //Llamo al pie
 require("../view/partials/footer.php");

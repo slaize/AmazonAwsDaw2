@@ -1,5 +1,5 @@
 body{
-    background-color: floralwhite;
+    background-color: ghostwhite;
     margin: 0;
 }
 #cajaLogin {
@@ -70,30 +70,42 @@ font-size: 0.9em;
     margin:0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #013369;
 }
 
 .listaMenu {
     float: left;
+    margin-left: 50px;
 }
 
 #salir{
     float: right;
     background-color: darkred;
 }
+
 .listaMenu .elementoMenu {
     display: inline-block;
-    color: white;
+    color: darkgray;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    height: 50px;
+    border-bottom: 3px solid transparent;
 }
 
 .listaMenu .elementoMenu:hover {
-    background-color: #111;
+    border-bottom: 3px solid rgb(40,486,163);
+    color:white;
 }
 
 #logoPanel{
     height: 100px;
-    background-color: midnightblue ;
+    background-color: rgb(35,39,48) ;
+}
+
+#logo{
+    height: 115px;
+    max-height: 100px;
+    display:block;
+    margin:auto;
 }

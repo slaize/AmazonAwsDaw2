@@ -75,21 +75,29 @@ class UsuarioController
 
         }
 
-        function index(){
-            //Realizo la consulta
-            $resultado = $this->db->query('SELECT * FROM usuarios where id=1');
+    }
 
-            //Asigno la consulta a variable
-            $data = $resultado->fetch(\PDO::FETCH_OBJ);
+    function index(){
+        //Inicio el objeto usuarios
+      // $usuarios = new \stdClass();
 
-            //Paso esa vatiable al constructor de usuario
-            $usuario = new Usuario($data);
+        $resultado = $this->db->query('SELECT * FROM usuarios');
 
 
-            //Instancio el ViewHelper
-            $view = new ViewHelper();
-
-            $this->view->vista("index", $usuario);
+        while ($data =  $resultado->fetch(\PDO::FETCH_OBJ)){
+            $usuarios [] = new Usuario($data);
         }
+        // Le paso los datos
+        $this->view->vista("usuarios", $usuarios);
+    }
+
+
+    function salir(){
+        //Borro el nombre de usuario a la session
+        $_SESSION['usuario'] ="";
+
+        //Le redirijo al panel
+        header("Location: " . $_SESSION['home']."panel");
+        $this->acceso();
     }
 }
