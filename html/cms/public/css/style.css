@@ -1,37 +1,33 @@
 body{
-    background-color: ghostwhite;
+    background-color: #fffffc;
     margin: 0;
+}
+
+h1{
+    text-align: center;
+    margin: 5px auto 0;
 }
 #cajaLogin {
     border: 0.2px solid black;
-    width: 47%;
-    height: 450px;
+    width: 45%;
     margin: 10% auto 25px;
-    background-color: coral;
+    background-color: rgb(35,39,48);
+    color: #fff;
 }
 
 #usuario,#contrasena{
     text-align: center;
-    width: 250px;
-    display: block;
-    margin : 5px auto 20px;
-    border: 2px solid black;
+    border: 1px solid lightgrey;
 }
 
 #botonLogin{
     display: block;
-    margin : 10px auto 0;
-}
+    margin : 20px auto;
+    background-color: #013369
 
-.usuarioContrasena{
-    margin: 0;
-    text-align: center;
-    font-size: 1.1em;
-    font-weight: bold;
 }
 
 #textoLogin{
-    padding: 10px;
     text-align: center;
     font-size: 1.4em;
 }
@@ -64,38 +60,30 @@ font-size: 0.9em;
     color: red;
 }
 
-#menu {
-    width: 100%;
-    list-style-type: none;
-    margin:0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #013369;
+
+.bg-primary{
+    background-color: #013369 !important;
+    color: lightgrey;
+    padding: 10px;
+
 }
 
-.listaMenu {
-    float: left;
-    margin-left: 50px;
+.navbar-inverse .navbar-nav .nav-link{
+    text-align: center;
+    font-size: 1.2em;
+    margin: 0 10px;
 }
 
-#salir{
-    float: right;
+.navbar-inverse .navbar-nav .nav-link:hover{
+    color:white;
+}
+.navbar-inverse .navbar-nav .nav-item:hover{
     background-color: darkred;
 }
 
-.listaMenu .elementoMenu {
-    display: inline-block;
-    color: darkgray;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    height: 50px;
-    border-bottom: 3px solid transparent;
-}
-
-.listaMenu .elementoMenu:hover {
-    border-bottom: 3px solid rgb(40,486,163);
-    color:white;
+.navbar-inverse .navbar-toggler{
+    border:none;
+    height: 35px;
 }
 
 #logoPanel{
@@ -108,4 +96,97 @@ font-size: 0.9em;
     max-height: 100px;
     display:block;
     margin:auto;
+}
+
+
+#cajonEditar{
+    padding: 30px;
+    display: block;
+    margin: 5% auto 10%;
+    width: 50%;
+    border: 2px solid rgb(35,39,48);
+    background-color: #013369;
+    color: white;
+    font-size: 1.1em;
+}
+
+#botonesEditar{
+padding:10px;
+}
+
+#volverEditar{
+    color: #0a001f;
+    background-color: gainsboro;
+    border: 1px solid #0a001f;
+    margin-bottom: 5px;
+}
+
+#guardarEditar{
+    float: right;
+    background-color: green;
+    border: 1px solid darkgreen;
+}
+
+.checkEditar{
+    margin-left: 5%;
+}
+
+.titulo{
+    font-size: 1.2em;
+    list-style: none;
+    border-bottom: 1px solid black;
+}
+
+.item, .derecha{
+    list-style: none;
+
+}
+
+.listado{
+    width:75%;
+    margin: 25px auto;
+}
+
+.derecha a{
+    margin:5px auto 5px;
+}
+
+.item a{
+    margin-left: 30px;
+}
+
+.alert{
+    width: 100%;
+    position: absolute;
+    max-height: 45px;
+    text-align: center;
+}
+
+#botonNuevoUser{
+    background-color: #013369;
+    border-color:rgb(35,39,48) ;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    margin: 50px 10% 10px;
+}
+
+.activo{
+    color:limegreen;
+}
+
+.activo:hover{
+    color:darkred;
+}
+
+.inactivo{
+    color: darkred;
+}
+
+.inactivo:hover{
+    color: limegreen;
+}
+
+.oculto{
+    display: none;
 }

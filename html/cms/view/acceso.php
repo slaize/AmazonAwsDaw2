@@ -4,15 +4,25 @@ $public = '/cms/public/';
 //Llamo a la cabecera
 require("../view/partials/header.php");
 ?>
-<body>
-<div id="cajaLogin">
-    <img id="avatar" src="<?php echo $public . "img/avatar.png"?>" alt="avatar">
+
+<div class="container" id="cajaLogin">
+    <img id="logo" src="<?php echo $public . "img/logo.jpg" ?>" alt="logo">
     <p id="textoLogin"><?php echo $datos->mensaje ?></p>
     <form action="" method="post">
-        <p class="usuarioContrasena">Usuario</p>
-        <input type="text" name="usuario" id="usuario">
-        <p class="usuarioContrasena">Contraseña</p>
-        <input type="text" name="contrasena" id="contrasena">
-        <input type="submit" name="acceder" value="acceder" id="botonLogin">
-    </form>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1"><i class="fas fa-user-circle"></i></span>
+            <input  type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1"><i class="fas fa-key"></i></span>
+            <input type="password" name="contrasena" id="contrasena" class="form-control" placeholder="Contraseña">
+        </div>
+
+        <div class="row">
+            <input type="submit" name="acceder" value="Acceder" id="botonLogin" class="btn btn-primary"></button>
+        </div>
+        </form>
 </div>
+
+

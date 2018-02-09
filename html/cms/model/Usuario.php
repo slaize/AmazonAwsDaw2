@@ -10,6 +10,7 @@ class Usuario
     var $fecha_acceso;
     var $activo;
     var $usuarios;
+    var $noticias;
 
     //Metodo constructor nuevo
     function __construct($data){
@@ -19,5 +20,6 @@ class Usuario
         $this->fecha_acceso = $data->fecha_acceso;
         $this->activo = $data->activo;
         $this->usuarios = $data->usuarios;
+        $this->noticias = $data->noticias;
     }
 }
