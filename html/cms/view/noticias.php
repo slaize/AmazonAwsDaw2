@@ -9,8 +9,7 @@ require("../view/partials/menu.php");
 require("../view/partials/mensajes.php");
 ?>
 <a id="botonNuevaNoticia" class="btn btn-primary" href="<?php echo $_SESSION['home'] ?>panel/noticias/crear"
-   role="button">Añadir
-    noticias <i class="fas fa-plus"></i></a>
+   role="button">Añadir noticias <i class="fas fa-plus"></i></a>
 <div class="content_section listadoNoticias">
     <ul class="row titulo">
         <li class="col-3 centro"><i class="far fa-newspaper"></i>&nbsp;Titulo</li>
