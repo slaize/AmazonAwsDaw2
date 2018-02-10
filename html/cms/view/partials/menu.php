@@ -35,7 +35,7 @@ $public = '/cms/public/';
                 <a class="nav-link elementoMenu" href="<?php echo $_SESSION['home'] ?>panel">Inicio</a>
             </li>
             <li class="nav-item listaMenu">
-                <a class="nav-link elementoMenu" href="">Noticias</a>
+                <a class="nav-link elementoMenu"  href="<?php echo $_SESSION['home'] ?>panel/noticias">Noticias</a>
             </li>
             <li class="nav-item listaMenu">
                 <a class="nav-link elementoMenu" href="<?php echo $_SESSION['home'] ?>panel/usuarios">Usuarios</a>

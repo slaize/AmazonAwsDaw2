@@ -2,13 +2,12 @@
 
 namespace App\Controller; //App sería el nombre del proyecto y Controller la carpeta que lo tiene
 
-use App\Model\Usuario;
+use App\Model\Noticia;
 use App\Helper\ViewHelper;
 use App\Helper\DbHelper; //Conexion a la base de datos
 
 
-class NoticiaController
-{
+class NoticiaController{
 
     //Funcion para la conexion con la BBDD, habra que copiar en los contructores
     var $db;
@@ -23,13 +22,13 @@ class NoticiaController
         //Instancio el ViewHelper
         $viewHelper = new ViewHelper();
         $this->view = $viewHelper;
-    }
+    } // Completa
 
 
     function index()
     {
         //Inicio el objeto usuarios
-        // $usuarios = new \stdClass();
+        $noticias = [];
 
         $resultado = $this->db->query('SELECT * FROM noticias');
 
@@ -39,157 +38,217 @@ class NoticiaController
         }
         // Le paso los datos
         $this->view->vista("noticias", $noticias);
-    }
+    } // Completa
 
 
-//// HE MODIFICADO HASTA AQUI >>>>>>>>>
     function crear()
     {
-
-        //Create user
+        //Create noticia
+        $contador = 0;
         //Insert
-        $nombre = "usuario" . rand(1000, 99999);
-        $registros = $this->db->exec('INSERT INTO usuarios (usuario) VALUES("' . $nombre . '")');
+        $nombre = "noticia" . rand(0,999999);
+        $slug = "slug" . rand(0,999999);
+
+        $registros = $this->db->exec('INSERT INTO noticias (titulo) VALUES("' . $nombre . '")');
 
         //Mensajes
         if ($registros) {
             $mensaje[] = ['tipo' => 'success',
-                'texto' => "El usuario <strong> $nombre </strong> se ha añadido correctamente"
+                'texto' => "La noticia <strong> $nombre </strong> se ha añadido correctamente"
             ];
+            $contador++;
         } else {
             $mensaje[] = ['tipo' => 'danger',
-                'texto' => "Ha ocurrido un error al añadir el usuario"
+                'texto' => "Ha ocurrido un error al añadir la noticia"
             ];
         }
 
         $_SESSION['mensajes'] = $mensaje;
 
         //Le redirijo al panel
-        header("Location: " . $_SESSION['home'] . "panel/usuarios");
-        $this->usuarios();
-    }
+        header("Location: " . $_SESSION['home'] . "panel/noticias");
+        $this->noticias();
+    } // Completa
 
     function activar($id)
     {
         if ($id) {
             //Update
-            $registros = $this->db->exec("UPDATE usuarios SET activo=1 WHERE id=" . $id . "");
+            $registros = $this->db->exec("UPDATE noticias SET activa=1 WHERE id=" . $id . "");
             //Mensajes
             if ($registros) {
                 $mensaje[] = ['tipo' => 'success',
-                    'texto' => "El usuario se ha activado correctamente"
+                    'texto' => "La noticia se ha activado correctamente"
                 ];
             } else {
                 $mensaje[] = ['tipo' => 'danger',
-                    'texto' => "Ha ocurrido un error al activar el usuario"
+                    'texto' => "Ha ocurrido un error al activar la noticia"
                 ];
             }
         } else {
             $mensaje[] = ['tipo' => 'danger',
-                'texto' => "Ha ocurrido un error al activar el usuario"
+                'texto' => "Ha ocurrido un error al activar la noticia"
             ];
         }
         $_SESSION['mensajes'] = $mensaje;
         //Le redirijo al panel
-        header("Location: " . $_SESSION['home'] . "panel/usuarios");
+        header("Location: " . $_SESSION['home'] . "panel/noticias");
 
-    }
+    } // Completa
 
     function desactivar($id)
     {
         if ($id) {
             //Update
-            $registros = $this->db->exec("UPDATE usuarios SET activo=0 WHERE id=" . $id . "");
+            $registros = $this->db->exec("UPDATE noticias SET activa=0 WHERE id=" . $id . "");
             //Mensajes
             if ($registros) {
                 $mensaje[] = ['tipo' => 'success',
-                    'texto' => "El usuario se ha desactivado correctamente"
+                    'texto' => "La noticia se ha desactivado correctamente"
                 ];
             } else {
                 $mensaje[] = ['tipo' => 'danger',
-                    'texto' => "Ha ocurrido un error al desactivar el usuario"
+                    'texto' => "Ha ocurrido un error al desactivar la noticia"
                 ];
             }
         } else {
             $mensaje[] = ['tipo' => 'danger',
-                'texto' => "Ha ocurrido un error al desactivar el usuario"
+                'texto' => "Ha ocurrido un error al desactivar la noticia"
             ];
         }
         $_SESSION['mensajes'] = $mensaje;
         //Le redirijo al panel
-        header("Location: " . $_SESSION['home'] . "panel/usuarios");
+        header("Location: " . $_SESSION['home'] . "panel/noticias");
 
-    }
+    } // Completa
+
+    function homeactivar($id)
+    {
+        if ($id) {
+            //Update
+            $registros = $this->db->exec("UPDATE noticias SET home=1 WHERE id=" . $id . "");
+            //Mensajes
+            if ($registros) {
+                $mensaje[] = ['tipo' => 'success',
+                    'texto' => "La noticia se ha añadido a la home correctamente"
+                ];
+            } else {
+                $mensaje[] = ['tipo' => 'danger',
+                    'texto' => "Ha ocurrido un error al añadir  la noticia a la home"
+                ];
+            }
+        } else {
+            $mensaje[] = ['tipo' => 'danger',
+                'texto' => "Ha ocurrido un error al añadir  la noticia a la home"
+            ];
+        }
+        $_SESSION['mensajes'] = $mensaje;
+        //Le redirijo al panel
+        header("Location: " . $_SESSION['home'] . "panel/noticias");
+
+    } // Completa
+
+    function homedesactivar($id)
+    {
+        if ($id) {
+            //Update
+            $registros = $this->db->exec("UPDATE noticias SET home=0 WHERE id=" . $id . "");
+            //Mensajes
+            if ($registros) {
+                $mensaje[] = ['tipo' => 'success',
+                    'texto' => "La noticia se ha quitado correctamente de la home"
+                ];
+            } else {
+                $mensaje[] = ['tipo' => 'danger',
+                    'texto' => "Ha ocurrido un error al quitar  la noticia de la home"
+                ];
+            }
+        } else {
+            $mensaje[] = ['tipo' => 'danger',
+                'texto' => "Ha ocurrido un error al quitar  la noticia de la home"
+            ];
+        }
+        $_SESSION['mensajes'] = $mensaje;
+        //Le redirijo al panel
+        header("Location: " . $_SESSION['home'] . "panel/noticias");
+
+    } // Completa
 
     function borrar($id)
     {
         if ($id) {
             //Update
-            $registros = $this->db->exec("DELETE FROM usuarios WHERE id=" . $id . "");
+            $registros = $this->db->exec("DELETE FROM noticias WHERE id=" . $id . "");
             //Mensajes
             if ($registros) {
                 $mensaje[] = ['tipo' => 'success',
-                    'texto' => "El usuario se ha borrado correctamente"
+                    'texto' => "La noticia se ha borrado correctamente"
                 ];
             } else {
                 $mensaje[] = ['tipo' => 'danger',
-                    'texto' => "Ha ocurrido un error al borrar el usuario"
+                    'texto' => "Ha ocurrido un error al borrar la noticia"
                 ];
             }
         } else {
             $mensaje[] = ['tipo' => 'danger',
-                'texto' => "Ha ocurrido un error al borrar el usuario"
+                'texto' => "Ha ocurrido un error al borrar la noticia"
             ];
         }
         $_SESSION['mensajes'] = $mensaje;
         //Le redirijo al panel
-        header("Location: " . $_SESSION['home'] . "panel/usuarios");
+        header("Location: " . $_SESSION['home'] . "panel/noticias");
 
-    }
+    }  // Completa
 
-    function editar($id){
+    function editarN($id){
         if ($id) {
             if (isset($_POST['guardar']) && $_POST['guardar'] == "Guardar") {
 
                 //Recojo los valores de los inputs de editar
-                $usuario = filter_input(0, 'usuario', FILTER_SANITIZE_SPECIAL_CHARS);
-                $usuarios = (filter_input(0, 'usuarios', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
-                $noticias = (filter_input(0, 'noticias', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
+                $titulo = filter_input(0, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
+                $slug = filter_input(0, 'slug', FILTER_SANITIZE_STRING);
+                $entradilla = filter_input(0, 'entradilla');
+                $texto = filter_input(0, 'texto');
+                $autor = filter_input(0, 'autor', FILTER_SANITIZE_SPECIAL_CHARS);
+                $fecha_mod = date("Y-m-d H:i:s");
 
                 //Guardo en la base de datos
                 $this->db->beginTransaction();
-                $this->db->exec("UPDATE usuarios SET usuario='".$usuario."' WHERE id=" . $id . "");
-                $this->db->exec("UPDATE usuarios SET usuarios='".$usuarios."' WHERE id=" . $id . "");
-                $this->db->exec("UPDATE usuarios SET noticias='".$noticias."' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET titulo='".$titulo."' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET slug='".$slug."' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET entradilla='".$entradilla."' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET texto='".$texto."' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET autor='".$autor."' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET fecha_mod='".$fecha_mod."' WHERE id=" . $id . "");
                 $this->db->commit();
 
                 //Mensaje y redireccion
                 $mensaje[] = ['tipo' => 'success',
-                    'texto' => "El usuario <b>$usuario</b> se ha guardado correctamente"
+                    'texto' => "La noticia se ha guardado correctamente"
                 ];
                 $_SESSION['mensajes'] = $mensaje;
                 //Le redirijo al panel
-                header("Location: " . $_SESSION['home'] . "panel/usuarios");
+                header("Location: " . $_SESSION['home'] . "panel/noticias");
 
             } else {
-                $resultado = $this->db->query("SELECT * FROM usuarios WHERE id=" . $id . " LIMIT 1");
+                $resultado = $this->db->query("SELECT * FROM noticias WHERE id=" . $id . " LIMIT 1");
 
                 //Mensaje
                 if ($resultado) {
-                    $usuario = $resultado->fetch(\PDO::FETCH_OBJ);
+                    $noticia = $resultado->fetch(\PDO::FETCH_OBJ);
                     //Le paso los datos a la vista
-                    $this->view->vista('editar', $usuario);
+                    $this->view->vista('editarN', $noticia);
 
                 } else {
                     $_SESSION['mensajes'] = $mensaje;
                     //Le redirijo al panel
-                    header("Location: " . $_SESSION['home'] . "panel/usuarios");
+                    header("Location: " . $_SESSION['home'] . "panel/noticias");
                 }
             }
         } else {
             $_SESSION['mensajes'] = $mensaje;
             //Le redirijo al panel
-            header("Location: " . $_SESSION['home'] . "panel/usuarios");
+            header("Location: " . $_SESSION['home'] . "panel/noticias");
         }
 
     }

@@ -8,6 +8,7 @@ require("../view/partials/menu.php");
 //Llamo a los mensajes
 require("../view/partials/mensajes.php");
 ?>
+
 <a id="botonNuevoUser" class="btn btn-primary" href="<?php echo $_SESSION['home'] ?>panel/usuarios/crear" role="button">Añadir
     usuario <i class="fas fa-plus"></i></a>
 <div class="content_section listado">
@@ -42,3 +43,8 @@ require("../view/partials/mensajes.php");
     <?php } ?>
 
 </div>
+
+
+<script>
+    ocultarFooterPanel();
+</script>

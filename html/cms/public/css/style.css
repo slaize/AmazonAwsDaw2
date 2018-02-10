@@ -190,3 +190,25 @@ padding:10px;
 .oculto{
     display: none;
 }
+
+.listadoNoticias{
+    width:95%;
+    margin: 25px auto;
+}
+
+#botonNuevaNoticia{
+    background-color: #013369;
+    border-color:rgb(35,39,48) ;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    margin: 50px 5% 10px;
+}
+
+.password{
+    display: none;
+}
+
+.centro{
+    text-align: center;
+}

@@ -4,6 +4,7 @@ namespace App;
 session_start();
 
 use App\Controller\UsuarioController;
+use App\Controller\NoticiaController;
 
 // Localizamos la base de la url
 $public = '/cms/public/';
@@ -140,9 +141,12 @@ if (count($array_ruta) == 4) {
         case "panelnoticias":
             switch ($array_ruta[2]) {
                 case "editar":
+                case "editarN":
                 case "borrar":
                 case "activar":
                 case "desactivar":
+                case "homeactivar":
+                case "homedesactivar":
                     $controller = new NoticiaController;
                     $accion = $array_ruta[2];
                     $id = $array_ruta[3];
@@ -235,7 +239,7 @@ if (count($array_ruta) == 4) {
             //Instancio el controlador
             $controller = new NoticiaController;
             //Le mando al método salir
-            $controller->crear();
+            $controller->index();
             break;
         case 'panel/noticias/crear':
             //Instancio el controlador
