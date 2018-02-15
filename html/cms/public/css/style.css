@@ -7,6 +7,9 @@ h1{
     text-align: center;
     margin: 5px auto 0;
 }
+
+
+/* ↓↓ LOGIN ACCESO PANEL ↓↓ */
 #cajaLogin {
     border: 0.2px solid black;
     width: 45%;
@@ -39,8 +42,15 @@ h1{
     margin : 15px auto 10px;
 }
 
+.rojo{
+    color: red;
+}
+
+
+/* ↓↓ FOOTER PANEL ADMIN ↓↓ */
 footer{
-    position: absolute;
+    position: inherit;
+    overflow: hidden;
     right: 0;
     bottom: 0;
     left: 0;
@@ -56,11 +66,9 @@ text-align: center;
 font-size: 0.9em;
 }
 
-.rojo{
-    color: red;
-}
 
 
+/* ↓↓ MENU PANEL DE ADMIN ↓↓ */
 .bg-primary{
     background-color: #013369 !important;
     color: lightgrey;
@@ -98,7 +106,7 @@ font-size: 0.9em;
     margin:auto;
 }
 
-
+/* ↓↓ VENTANA DE EDIAR USUARIO PANEL ADMIN ↓↓ */
 #cajonEditar{
     padding: 30px;
     display: block;
@@ -211,4 +219,318 @@ padding:10px;
 
 .centro{
     text-align: center;
+}
+
+
+/* ↓↓ MENU DE PARTE CLIENTE ↓↓ */
+#body {
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#transparente {
+    display: none;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    z-index: 99;
+}
+
+.cabecera {
+    background-color: #013369;
+    height: 50px;
+}
+
+.cabecera .contenedor_principal {
+    margin: auto auto;
+    max-width: 1040px;
+    height: 99%;
+}
+
+.cabecera .contenedor_principal .menu {
+    display: inline-block;
+}
+
+.cabecera .contenedor_principal .menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    font-size: 14px;
+}
+
+.cabecera .contenedor_principal .menu ul li {
+    display: inline-block;
+    color: lightgrey;
+    font-weight: bold;
+    line-height: 47px;
+    border-bottom: 3px solid transparent;
+}
+
+.cabecera .contenedor_principal .menu ul li a {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: block;
+    cursor: pointer;
+}
+
+.cabecera .contenedor_principal .menu ul li:last-child a {
+    padding-right: 10px;
+}
+
+.cabecera .contenedor_principal .menu ul li:hover {
+    border-bottom: 3px solid crimson;
+    color: white;
+}
+
+.cabecera .contenedor_principal .menu ul .has_child ul {
+    display: none;
+    background-color: #013369;
+    position: absolute;
+    height: auto !important;
+}
+
+.cabecera .contenedor_principal .menu ul .has_child:hover ul {
+    display: block;
+}
+
+.cabecera .contenedor_principal .menu ul .has_child:hover ul li {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.cabecera .contenedor_principal .menu ul .has_child:hover ul li:last-child {
+    padding-right: 20px;
+}
+
+.fa-bars {
+    display: none;
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 30px !important;
+    cursor: pointer;
+}
+
+/* ↓↓ FOOTER PARTE CLIENTE ↓↓ */
+.footerHome{
+    width: 100%;
+    background-color: rgb(35,39,48);
+    color:white;
+    position: inherit;
+    display: block;
+    margin-top: 50px;
+    bottom: 0;
+}
+
+.footerHome a{
+    font-size: 0.8em;
+    display: block;
+    margin: 8px auto;
+}
+
+.footerHome a:last-child{
+    color: crimson;
+}
+
+.footerHome a:last-child:hover{
+    color: crimson;
+}
+
+
+/* ↓↓ CONTENEDORES GLOBALES CLIENTE ↓↓ */
+.cien{
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.ochenta{
+    margin: 0 auto;
+    width: 80%;
+}
+
+
+/* ↓↓ PAGINA DE LISTADO DE NOTICIAS ↓↓ */
+.noticiasHome{
+    width: 100%;
+    display: block;
+    margin: 15px 0 50px;
+}
+
+
+.gridNoticias{
+    padding: 5px;
+    width: 50%;
+    display: block;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.gridNoticias img{
+    width: 160px;
+    display: block;
+    float: left;
+}
+
+.textos{
+    display: block;
+    float: left;
+    margin-left: 10px ;
+}
+
+
+
+
+/* ↓↓ HOME PAGINA PRINCIPAL ↓↓ */
+.home{
+    margin: 50px auto;
+    width: 65%;
+    float: left;
+}
+
+.gridHome{
+    overflow: hidden;
+    padding: 5px;
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+.gridHome img{
+    width: 160px;
+    display: block;
+    float: left;
+}
+
+.gridHome .textos{
+    display: block;
+    float: left;
+    margin-left: 10px ;
+}
+
+.verMasHome{
+    font-weight: bold;
+    color: lightgrey;
+    width: 50%;
+    text-align: center;
+    display: block;
+    margin: 30px auto 10px;
+    background-color: #013369;
+    padding: 10px;
+}
+
+.aboutUs{
+    padding: 5px;
+    margin: 50px auto;
+    width: 35%;
+    float: left;
+}
+
+.aboutUs h2{
+    text-align: center;
+    padding: 10px;
+}
+
+.aboutUs p{
+    padding: 10px;
+}
+
+/* ↓↓ PAGINA DE NOTICIA COMPLETA ↓↓ */
+.noticiaCompleta{
+    margin: 50px auto;
+}
+
+.imagenNoticiaCompleta{
+    display: block;
+    width: 100%;
+    padding: 10px;
+}
+
+.imagenNoticiaCompleta img{
+    display: block;
+    width: 100%;
+    max-height: 400px;
+}
+
+.noticiaCompleta h1{
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+
+
+/* ↓↓ MENU PRINCIPAL RESPONSIVE ↓↓ */
+@media (max-width: 700px) {
+    #body {
+        overflow-x: hidden;
+    }
+
+    /* MENU HAMBURGUESA */
+    .fa-bars {
+        color: white;
+        position: absolute;
+        top: 110px;
+        right: 30px;
+        font-size: 30px !important;
+        display: inline-block !important;
+        cursor: pointer;
+    }
+
+    .cabecera .contenedor_principal .menu {
+        display: block;
+        width: 80%;
+        height: 100%;
+        right: -100%;
+        top: 0px;
+        position: absolute;
+        transition: all 0.3s ease;
+    }
+
+    .cabecera .contenedor_principal .menu ul {
+        position: fixed;
+        width: 90%;
+        background-color: #013369;
+        height: 100%;
+        z-index: 9999;
+
+    }
+
+    .cabecera .contenedor_principal .menu ul .has_child ul {
+        display: block;
+        background-color:rgb(35,39,48);
+        position: relative;
+        height: auto !important;
+    }
+
+    .cabecera .contenedor_principal .menu ul li {
+        display: block;
+        color: lightgrey;
+        line-height: 50px;
+        border-bottom: 3px solid transparent;
+    }
+
+    .cabecera .contenedor_principal .menu .has_child ul li a {
+        padding-left: 50px;
+        padding-right: 10px;
+        display: block;
+        cursor: pointer;
+    }
+
+    .cabecera .contenedor_principal .menu ul .has_child:hover ul {
+        display: block;
+        z-index: 666;
+        width: 100%;
+    }
+
+    .cabecera .contenedor_principal .menu ul .has_child:hover ul li {
+        display: block;
+        color: white;
+
+    }
 }

@@ -71,6 +71,7 @@ class UsuarioController
         if ($data && hash_equals($data->clave, crypt($contrasena, $data->clave))) {
             //Añado el nombre de usuario a la session
             $_SESSION['usuario'] = $data->usuario;
+            $_SESSION['nombre_completo'] = $data->nombre_completo;
             return 1;
         } else {
             // return
@@ -100,6 +101,7 @@ class UsuarioController
     {
         //Borro el nombre de usuario a la session
         $_SESSION['usuario'] = "";
+        $_SESSION['nombre_completo'] = "";
 
         //Le redirijo al panel
         header("Location: " . $_SESSION['home'] . "panel");
@@ -216,6 +218,7 @@ class UsuarioController
 
                 //Recojo los valores de los inputs de editar
                 $usuario = filter_input(0, 'usuario', FILTER_SANITIZE_SPECIAL_CHARS);
+                $nombre_completo = filter_input(0, 'nombre', FILTER_SANITIZE_STRING);
                 $usuarios = (filter_input(0, 'usuarios', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
                 $noticias = (filter_input(0, 'noticias', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
 
@@ -224,6 +227,7 @@ class UsuarioController
                 $this->db->exec("UPDATE usuarios SET usuario='".$usuario."' WHERE id=" . $id . "");
                 $this->db->exec("UPDATE usuarios SET usuarios='".$usuarios."' WHERE id=" . $id . "");
                 $this->db->exec("UPDATE usuarios SET noticias='".$noticias."' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE usuarios SET nombre_completo='".$nombre_completo."' WHERE id=" . $id . "");
                 $this->db->commit();
 
                 //Mensaje y redireccion

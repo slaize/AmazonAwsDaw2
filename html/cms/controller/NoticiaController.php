@@ -5,7 +5,7 @@ namespace App\Controller; //App sería el nombre del proyecto y Controller la ca
 use App\Model\Noticia;
 use App\Helper\ViewHelper;
 use App\Helper\DbHelper; //Conexion a la base de datos
-
+$public = '/cms/public/';
 
 class NoticiaController{
 
@@ -43,20 +43,20 @@ class NoticiaController{
 
     function crear()
     {
-        //Create noticia
-        $contador = 0;
+
         //Insert
         $nombre = "noticia" . rand(0,999999);
         $slug = "slug" . rand(0,999999);
+        $nombre_completo = $_SESSION['nombre_completo'];
 
-        $registros = $this->db->exec('INSERT INTO noticias (titulo) VALUES("' . $nombre . '")');
+        $registros = $this->db->exec('INSERT INTO noticias (titulo,autor) VALUES("' . $nombre . '", "'.$nombre_completo.'")');
+
 
         //Mensajes
         if ($registros) {
             $mensaje[] = ['tipo' => 'success',
                 'texto' => "La noticia <strong> $nombre </strong> se ha añadido correctamente"
             ];
-            $contador++;
         } else {
             $mensaje[] = ['tipo' => 'danger',
                 'texto' => "Ha ocurrido un error al añadir la noticia"
@@ -206,7 +206,11 @@ class NoticiaController{
 
                 //Recojo los valores de los inputs de editar
                 $titulo = filter_input(0, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
-                $slug = filter_input(0, 'slug', FILTER_SANITIZE_STRING);
+
+                $reglas = ['á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u', 'ü' => 'u', 'ñ' => 'n', ' '=>'-'];
+                $hoy = date("YmdHms");
+                $slug = strtolower(strtr($titulo, $reglas)).$hoy ;
+
                 $entradilla = filter_input(0, 'entradilla');
                 $texto = filter_input(0, 'texto');
                 $autor = filter_input(0, 'autor', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -218,7 +222,7 @@ class NoticiaController{
                 $this->db->exec("UPDATE noticias SET slug='".$slug."' WHERE id=" . $id . "");
                 $this->db->exec("UPDATE noticias SET entradilla='".$entradilla."' WHERE id=" . $id . "");
                 $this->db->exec("UPDATE noticias SET texto='".$texto."' WHERE id=" . $id . "");
-                $this->db->exec("UPDATE noticias SET autor='".$autor."' WHERE id=" . $id . "");
+                //$this->db->exec("UPDATE noticias SET autor='".$autor."' WHERE id=" . $id . "");
                 $this->db->exec("UPDATE noticias SET fecha_mod='".$fecha_mod."' WHERE id=" . $id . "");
                 $this->db->commit();
 
@@ -253,3 +257,4 @@ class NoticiaController{
 
     }
 }
+

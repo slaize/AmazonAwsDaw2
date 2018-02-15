@@ -15,6 +15,10 @@ require("../view/partials/menu.php");
             <label for="exampleInputEmail1">Usuario</label>
             <input type="text" class="form-control" name="usuario" id="nombreEditar" value="<?php echo $datos->usuario ?>">
         </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nombre completo</label>
+            <input type="text" class="form-control" name="nombre" id="nombreUsuario" value="<?php echo $datos->nombre_completo ?>">
+        </div>
         <div class="form-check checkEditar" id="cambiaClave">
             <input type="checkbox" class="form-check-input" name="cambiarClave" id="activoCambioClave">
             <label class="form-check-label" for="cambioclave">Marcar para cambiar la clave</label>
