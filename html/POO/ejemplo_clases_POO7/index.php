@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Controller\ContactoController;
+use App\Controller\UsuarioController;
 
 echo "<h1>Introduccion a la programacion orientada a objetos </h1>";
 echo "<h2>Ejemplo 7: Gestión de las vistas mediante 'helpers'</h2>";
@@ -32,7 +32,7 @@ function autoload($clase, $dir = null)
 }
 
 // Instancio el controlador
-$controller = new ContactoController;
+$controller = new UsuarioController;
 
 // Ejecuto el metodo por defecto del controlador
 $controller->index();

@@ -9,7 +9,7 @@ class ContactoController
 
         $contacto->setEmail("slaize@gmail.com");
 
-        require("view/index.php");
+        require("view/usuarios.php");
     }
 
 

@@ -15,7 +15,7 @@ class Contacto
 
     //Metodo constructor antiguo
     /*
-    function Contacto($miNombre,$misApellidos,$miEdad,$miEmail){
+    function Usuario($miNombre,$misApellidos,$miEdad,$miEmail){
         $this->nombre = $miNombre;
         $this->apellidos = $misApellidos;
         $this->edad = $miEdad;
