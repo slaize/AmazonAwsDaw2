@@ -26,3 +26,5 @@ require("../view/partials/header.php");
 </div>
 
 
+
+<?php require("../view/partials/footer.php"); ?>

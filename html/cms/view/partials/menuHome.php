@@ -6,9 +6,9 @@
     <div class="contenedor_principal">
         <div class="menu" id="menu">
             <ul>
-                <li><a>Home</a></li>
-                <li><a>Noticias</a></li>
-                <li><a>Contacto</a></li>
+                <li><a href="<?php echo $_SESSION['home'] ?>">Home</a></li>
+                <li><a href="<?php echo $_SESSION['home'] . "noticias" ?>">Noticias</a></li>
+                <li><a href="<?php echo $_SESSION['home'] . "contacto" ?>">Contacto</a></li>
             </ul>
         </div>
         <i id="burger" class="fas fa-bars"></i>

@@ -1,10 +1,9 @@
-function ocultarFooterPanel() {
-    $(window).on('load', function () {
-        $("#footer").css("display", ("none"));
-    });
-}
-
 $(window).on('load', function () {
+
+    function ocultarFooterPanel() {
+        $("#footer").css("display", "none");
+    };
+
     $("#activoCambioClave").on('change', function () {
         if ($("#activoCambioClave").is(':checked')) {
             $(".password").css("display", "block");

@@ -19,9 +19,8 @@ require("../view/partials/mensajes.php");
     <?php foreach ($datos as $dato) { ?>
         <ul class="row item">
             <li class="col-9">
-                <a href="">
-                    <?php echo $dato->usuario ?>
-                </a>
+                <b><p><?php echo $dato->usuario ?></p></b>
+
                 <hr>
             </li>
             <li class="col-3 derecha">
@@ -33,7 +32,8 @@ require("../view/partials/mensajes.php");
                 //Ponemos la ruta para activar o descativar los usuarios
                 $ruta = $_SESSION['home'] . "panel/usuarios/" . $texto . "/" . $dato->id;
                 ?>
-                <a href="<?php echo $ruta ?>" class="<?php echo $color ?>" title="<?php echo $texto ?>"><i class="far fa-check-circle"></i></a>
+                <a href="<?php echo $ruta ?>" class="<?php echo $color ?>" title="<?php echo $texto ?>"><i
+                            class="far fa-check-circle"></i></a>
                 <?php $ruta = $_SESSION['home'] . "panel/usuarios/borrar/" . $dato->id ?>
                 <a href="<?php echo $ruta ?>" title="borrar" id="borrarUsuario"
                    onclick="return confirm('¿Estás seguro?')"><i class="fas fa-trash"></i></a>
@@ -43,8 +43,3 @@ require("../view/partials/mensajes.php");
     <?php } ?>
 
 </div>
-
-
-<script>
-    ocultarFooterPanel();
-</script>

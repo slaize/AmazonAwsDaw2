@@ -7,7 +7,8 @@ use App\Helper\ViewHelper;
 use App\Helper\DbHelper; //Conexion a la base de datos
 $public = '/cms/public/';
 
-class NoticiaController{
+class NoticiaController
+{
 
     //Funcion para la conexion con la BBDD, habra que copiar en los contructores
     var $db;
@@ -40,16 +41,15 @@ class NoticiaController{
         $this->view->vista("noticias", $noticias);
     } // Completa
 
-
     function crear()
     {
 
         //Insert
-        $nombre = "noticia" . rand(0,999999);
-        $slug = "slug" . rand(0,999999);
+        $nombre = "noticia" . rand(0, 999999);
+        $slug = "slug" . rand(0, 999999);
         $nombre_completo = $_SESSION['nombre_completo'];
 
-        $registros = $this->db->exec('INSERT INTO noticias (titulo,autor) VALUES("' . $nombre . '", "'.$nombre_completo.'")');
+        $registros = $this->db->exec('INSERT INTO noticias (titulo,autor) VALUES("' . $nombre . '", "' . $nombre_completo . '")');
 
 
         //Mensajes
@@ -75,8 +75,11 @@ class NoticiaController{
         if ($id) {
             //Update
             $registros = $this->db->exec("UPDATE noticias SET activa=1 WHERE id=" . $id . "");
+            $fecha_pub = date("Y-m-d H:i:s");
             //Mensajes
             if ($registros) {
+
+                $this->db->exec("UPDATE noticias SET fecha_publicacion='" . $fecha_pub . "' WHERE id=" . $id . "");
                 $mensaje[] = ['tipo' => 'success',
                     'texto' => "La noticia se ha activado correctamente"
                 ];
@@ -103,6 +106,7 @@ class NoticiaController{
             $registros = $this->db->exec("UPDATE noticias SET activa=0 WHERE id=" . $id . "");
             //Mensajes
             if ($registros) {
+                $this->db->exec("UPDATE noticias SET fecha_publicacion=null WHERE id=" . $id . "");
                 $mensaje[] = ['tipo' => 'success',
                     'texto' => "La noticia se ha desactivado correctamente"
                 ];
@@ -200,16 +204,18 @@ class NoticiaController{
 
     }  // Completa
 
-    function editarN($id){
+    function editarN($id)
+    {
         if ($id) {
+
             if (isset($_POST['guardar']) && $_POST['guardar'] == "Guardar") {
 
                 //Recojo los valores de los inputs de editar
                 $titulo = filter_input(0, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
 
-                $reglas = ['á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u', 'ü' => 'u', 'ñ' => 'n', ' '=>'-'];
-                $hoy = date("YmdHms");
-                $slug = strtolower(strtr($titulo, $reglas)).$hoy ;
+                $reglas = ['á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u', 'ü' => 'u', 'ñ' => 'n', ' ' => '-'];
+                $hoy = date("YmdHis");
+                $slug = strtolower(strtr($titulo, $reglas)) . $hoy;
 
                 $entradilla = filter_input(0, 'entradilla');
                 $texto = filter_input(0, 'texto');
@@ -218,12 +224,12 @@ class NoticiaController{
 
                 //Guardo en la base de datos
                 $this->db->beginTransaction();
-                $this->db->exec("UPDATE noticias SET titulo='".$titulo."' WHERE id=" . $id . "");
-                $this->db->exec("UPDATE noticias SET slug='".$slug."' WHERE id=" . $id . "");
-                $this->db->exec("UPDATE noticias SET entradilla='".$entradilla."' WHERE id=" . $id . "");
-                $this->db->exec("UPDATE noticias SET texto='".$texto."' WHERE id=" . $id . "");
-                //$this->db->exec("UPDATE noticias SET autor='".$autor."' WHERE id=" . $id . "");
-                $this->db->exec("UPDATE noticias SET fecha_mod='".$fecha_mod."' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET titulo='" . $titulo . "' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET slug='" . $slug . "' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET entradilla='" . $entradilla . "' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET texto='" . $texto . "' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET autor='" . $autor . "' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE noticias SET fecha_mod='" . $fecha_mod . "' WHERE id=" . $id . "");
                 $this->db->commit();
 
                 //Mensaje y redireccion
@@ -256,5 +262,61 @@ class NoticiaController{
         }
 
     }
-}
 
+    function upload($id)
+    {
+        if ($id) {
+            if (isset($_POST['subir'])) {
+
+                $archivo_recibido = $_FILES['archivo'];
+                $directorio_subida = '../public/img/uploads/';
+                $nombre_fichero_unico = date("Ymd-Hms");
+                $archivo_subido = $directorio_subida . basename($nombre_fichero_unico . ".jpeg");
+
+                // Declaramos la variable que contiene el tipo de extension del archivo a subir
+                $tipo = mime_content_type($archivo_recibido['tmp_name']);
+
+
+                //Declaramos las variables para el control de tamaño de los ficheros
+                $maxsize = $_POST['size'];
+                $tamanoFichero = filesize($archivo_recibido['tmp_name']);
+                //Comparamos el tipo del fichero con el que nos interesa
+                if ($tipo == "image/jpeg" || $tipo == "image/png" && $maxsize > $tamanoFichero) {
+
+                    if (is_uploaded_file($archivo_recibido['tmp_name']) AND move_uploaded_file($archivo_recibido['tmp_name'], $archivo_subido)) {
+
+                        $this->db->beginTransaction();
+                        $this->db->exec("UPDATE noticias SET url='" . $archivo_subido . "' WHERE id=" . $id . "");
+                        $this->db->commit();
+                        //Mensaje y redireccion
+                        $mensaje[] = ['tipo' => 'success',
+                            'texto' => "La imagen se ha subido  correctamente"
+                        ];
+                        $_SESSION['mensajes'] = $mensaje;
+                        //Le redirijo al panel
+                        header("Location: " . $_SESSION['home'] . "panel/noticias");
+
+                    } else {
+                        $mensaje[] = ['tipo' => 'danger',
+                            'texto' => "Ha ocurrido un error al subir la imagen."
+                        ];
+
+                        $_SESSION['mensajes'] = $mensaje;
+                        //Le redirijo al panel
+                        header("Location: " . $_SESSION['home'] . "panel/noticias");
+                    }
+                } else {
+                    $mensaje[] = ['tipo' => 'danger',
+                        'texto' => "Formato de imagen erróneo, formatos admitidos .jpeg y .png"
+                    ];
+
+                    $_SESSION['mensajes'] = $mensaje;
+                    //Le redirijo al panel
+                    header("Location: " . $_SESSION['home'] . "panel/noticias");
+                }
+            } else {
+                $this->view->vista("upload", "");
+            }
+        }
+    }
+}

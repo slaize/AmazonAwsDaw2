@@ -3,24 +3,6 @@
 $public = '/cms/public/';
 
 ?>
-
-<!--  MENU SIN BOOTSTRAP
-<header>
-    <div id="logoPanel">
-        <img id="logo" src="<?php echo $public . "img/logo.jpg" ?>" alt="logo">
-    </div>
-   <div id="contenedor_menu">
-        <ul id="menu">
-            <li class="listaMenu"><a  class="elementoMenu" href="<?php echo $_SESSION['home'] ?>panel">Inicio</a></li>
-            <li class="listaMenu"><a  class="elementoMenu" href="">Noticias</a></li>
-            <li class="listaMenu"><a  class="elementoMenu" href="<?php echo $_SESSION['home'] ?>panel/usuarios">Usuarios</a></li>
-            <li class="listaMenu" id="salir"><a  class="elementoMenu"  href="<?php echo $_SESSION['home'] ?>panel/salir">Salir  <i class="fas fa-sign-out-alt"></i></a></li>
-        </ul>
-    </div>
-</header>
-
--->
-
 <div id="logoPanel">
     <img id="logo" src="<?php echo $public . "img/logo.jpg" ?>" alt="logo">
 </div>
@@ -37,9 +19,11 @@ $public = '/cms/public/';
             <li class="nav-item listaMenu">
                 <a class="nav-link elementoMenu"  href="<?php echo $_SESSION['home'] ?>panel/noticias">Noticias</a>
             </li>
+            <?php if($_SESSION['usuarios']){ ?>
             <li class="nav-item listaMenu">
                 <a class="nav-link elementoMenu" href="<?php echo $_SESSION['home'] ?>panel/usuarios">Usuarios</a>
             </li>
+            <?php } ?>
             <li class="nav-item listaMenu">
                 <a class="nav-link elementoMenu" href="<?php echo $_SESSION['home'] ?>panel/salir">Salir  <i class="fas fa-sign-out-alt"></i></a>
             </li>

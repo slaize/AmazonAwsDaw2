@@ -1,55 +1,54 @@
-body{
+body {
     background-color: #fffffc;
     margin: 0;
 }
 
-h1{
+h1 {
     text-align: center;
     margin: 5px auto 0;
 }
-
 
 /* ↓↓ LOGIN ACCESO PANEL ↓↓ */
 #cajaLogin {
     border: 0.2px solid black;
     width: 45%;
     margin: 10% auto 25px;
-    background-color: rgb(35,39,48);
+    background-color: rgb(35, 39, 48);
     color: #fff;
 }
 
-#usuario,#contrasena{
+#usuario, #contrasena {
     text-align: center;
     border: 1px solid lightgrey;
 }
 
-#botonLogin{
+#botonLogin {
     display: block;
-    margin : 20px auto;
+    margin: 20px auto;
     background-color: #013369
 
 }
 
-#textoLogin{
+#textoLogin {
     text-align: center;
     font-size: 1.4em;
 }
 
-#avatar{
+#avatar {
     width: 110px;
     border-radius: 100px;
     display: block;
-    margin : 15px auto 10px;
+    margin: 15px auto 10px;
 }
 
-.rojo{
+.rojo {
     color: red;
 }
 
-
 /* ↓↓ FOOTER PANEL ADMIN ↓↓ */
-footer{
-    position: inherit;
+footer {
+    display: block;
+    position: absolute;
     overflow: hidden;
     right: 0;
     bottom: 0;
@@ -57,173 +56,175 @@ footer{
     padding: 2px;
     text-align: center;
     width: 47%;
-    display: block;
-    margin :0 auto;
+    margin: 0 auto 0;
 }
 
-footer p{
-text-align: center;
-font-size: 0.9em;
+footer p {
+    text-align: center;
+    font-size: 0.9em;
 }
-
-
 
 /* ↓↓ MENU PANEL DE ADMIN ↓↓ */
-.bg-primary{
+.bg-primary {
     background-color: #013369 !important;
     color: lightgrey;
     padding: 10px;
 
 }
 
-.navbar-inverse .navbar-nav .nav-link{
+.navbar-inverse .navbar-nav .nav-link {
     text-align: center;
     font-size: 1.2em;
     margin: 0 10px;
 }
 
-.navbar-inverse .navbar-nav .nav-link:hover{
-    color:white;
+.navbar-inverse .navbar-nav .nav-link:hover {
+    color: white;
 }
-.navbar-inverse .navbar-nav .nav-item:hover{
+
+.navbar-inverse .navbar-nav .nav-item:hover {
     background-color: darkred;
 }
 
-.navbar-inverse .navbar-toggler{
-    border:none;
+.navbar-inverse .navbar-toggler {
+    border: none;
     height: 35px;
 }
 
-#logoPanel{
+#logoPanel {
     height: 100px;
-    background-color: rgb(35,39,48) ;
+    background-color: rgb(35, 39, 48);
 }
 
-#logo{
+#logo {
     height: 115px;
     max-height: 100px;
-    display:block;
-    margin:auto;
+    display: block;
+    margin: auto;
 }
 
 /* ↓↓ VENTANA DE EDIAR USUARIO PANEL ADMIN ↓↓ */
-#cajonEditar{
+#cajonEditar {
     padding: 30px;
     display: block;
     margin: 5% auto 10%;
     width: 50%;
-    border: 2px solid rgb(35,39,48);
+    border: 2px solid rgb(35, 39, 48);
     background-color: #013369;
     color: white;
     font-size: 1.1em;
 }
 
-#botonesEditar{
-padding:10px;
+#botonesEditar {
+    padding: 10px;
 }
 
-#volverEditar{
+#volverEditar {
     color: #0a001f;
     background-color: gainsboro;
     border: 1px solid #0a001f;
     margin-bottom: 5px;
 }
 
-#guardarEditar{
+#guardarEditar {
     float: right;
     background-color: green;
     border: 1px solid darkgreen;
 }
 
-.checkEditar{
+.checkEditar {
     margin-left: 5%;
 }
 
-.titulo{
+.titulo {
     font-size: 1.2em;
     list-style: none;
     border-bottom: 1px solid black;
 }
 
-.item, .derecha{
+.item, .derecha {
     list-style: none;
 
 }
 
-.listado{
-    width:75%;
+.listado {
+    width: 75%;
     margin: 25px auto;
 }
 
-.derecha a{
-    margin:5px auto 5px;
+
+.derecha a {
+    margin: 5px auto 5px;
 }
 
-.item a{
+.item a {
     margin-left: 30px;
 }
 
-.alert{
+.alert {
     width: 100%;
     position: absolute;
     max-height: 45px;
     text-align: center;
 }
 
-#botonNuevoUser{
+#botonNuevoUser {
     background-color: #013369;
-    border-color:rgb(35,39,48) ;
+    border-color: rgb(35, 39, 48);
     color: white;
     font-weight: bold;
     padding: 10px;
     margin: 50px 10% 10px;
 }
 
-.activo{
-    color:limegreen;
-}
-
-.activo:hover{
-    color:darkred;
-}
-
-.inactivo{
-    color: darkred;
-}
-
-.inactivo:hover{
+.activo {
     color: limegreen;
 }
 
-.oculto{
+.activo:hover {
+    color: darkred;
+}
+
+.inactivo {
+    color: darkred;
+}
+
+.inactivo:hover {
+    color: limegreen;
+}
+
+.vacia {
+    color: #0275d8;
+}
+
+.oculto {
     display: none;
 }
 
-.listadoNoticias{
-    width:95%;
+.listadoNoticias {
+    width: 95%;
     margin: 25px auto;
 }
 
-#botonNuevaNoticia{
+#botonNuevaNoticia {
     background-color: #013369;
-    border-color:rgb(35,39,48) ;
+    border-color: rgb(35, 39, 48);
     color: white;
     font-weight: bold;
     padding: 10px;
     margin: 50px 5% 10px;
 }
 
-.password{
+.password {
     display: none;
 }
 
-.centro{
+.centro {
     text-align: center;
 }
 
-
 /* ↓↓ MENU DE PARTE CLIENTE ↓↓ */
-#body {
+#body{
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
 }
@@ -251,6 +252,7 @@ padding:10px;
 
 .cabecera .contenedor_principal .menu {
     display: inline-block;
+    margin: 0 auto;
 }
 
 .cabecera .contenedor_principal .menu ul {
@@ -258,7 +260,7 @@ padding:10px;
     margin: 0;
     padding: 0;
     height: 50px;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .cabecera .contenedor_principal .menu ul li {
@@ -270,10 +272,16 @@ padding:10px;
 }
 
 .cabecera .contenedor_principal .menu ul li a {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
     display: block;
     cursor: pointer;
+    color: lightgrey;
+}
+
+.cabecera .contenedor_principal .menu ul li a:hover {
+    text-decoration: none;
+    color: white;
 }
 
 .cabecera .contenedor_principal .menu ul li:last-child a {
@@ -282,7 +290,6 @@ padding:10px;
 
 .cabecera .contenedor_principal .menu ul li:hover {
     border-bottom: 3px solid crimson;
-    color: white;
 }
 
 .cabecera .contenedor_principal .menu ul .has_child ul {
@@ -316,155 +323,347 @@ padding:10px;
 }
 
 /* ↓↓ FOOTER PARTE CLIENTE ↓↓ */
-.footerHome{
+.footerHome {
     width: 100%;
-    background-color: rgb(35,39,48);
-    color:white;
+    background-color: rgb(35, 39, 48);
+    color: white;
     position: inherit;
     display: block;
-    margin-top: 50px;
+    margin-top:0;
     bottom: 0;
 }
 
-.footerHome a{
+.footerHome a {
     font-size: 0.8em;
     display: block;
     margin: 8px auto;
 }
 
-.footerHome a:last-child{
+.footerHome a:last-child {
     color: crimson;
 }
 
-.footerHome a:last-child:hover{
+.footerHome a:last-child:hover {
     color: crimson;
 }
-
 
 /* ↓↓ CONTENEDORES GLOBALES CLIENTE ↓↓ */
-.cien{
+.cien {
     margin: 0;
     width: 100%;
     overflow: hidden;
 }
 
-.ochenta{
+.ochenta {
+    overflow: hidden;
     margin: 0 auto;
     width: 80%;
 }
 
-
 /* ↓↓ PAGINA DE LISTADO DE NOTICIAS ↓↓ */
-.noticiasHome{
+.noticiasHome {
     width: 100%;
     display: block;
     margin: 15px 0 50px;
 }
 
-
-.gridNoticias{
+.gridListado {
     padding: 5px;
-    width: 50%;
+    width: 49%;
     display: block;
     float: left;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
+    max-height: 600px;
 }
 
-.gridNoticias img{
-    width: 160px;
+.gridListado img {
+    width: 95%;
     display: block;
+    margin: 0 auto 15px;
+    max-height: 250px;
     float: left;
 }
 
-.textos{
-    display: block;
+.textosListado {
     float: left;
-    margin-left: 10px ;
+    display: block;
+    max-width: 95%;
+    max-height: 400px;
 }
 
+.textosListado a{
+    font-size: larger;
+    font-weight: bold;
+    color: rgb(35, 39, 48);
+}
 
+.textosListado a:hover{
+    text-decoration:none;
+    color: lightgrey;
+}
 
+.textosListado a:visited{
+    text-decoration:none;
+    color: #013369;
+}
+
+.textosListado p{
+    margin: 15px auto;
+    font-size: medium;
+    color: #6b6b6b;
+}
 
 /* ↓↓ HOME PAGINA PRINCIPAL ↓↓ */
-.home{
+.home {
     margin: 50px auto;
-    width: 65%;
+    width: 70%;
     float: left;
+    height: auto;
 }
 
-.gridHome{
+.gridHome {
     overflow: hidden;
     padding: 5px;
     width: 100%;
     display: block;
     margin-bottom: 10px;
+    margin-right: 15px;
+    max-height: 250px;
 }
-
-
-.gridHome img{
+#gridNoticias{
+    overflow: hidden;
+    padding: 5px;
+    max-width: 50%;
+    display: block;
+    margin-bottom: 10px;
+}
+.gridHome img {
     width: 160px;
     display: block;
     float: left;
 }
 
-.gridHome .textos{
+.gridHome .textos {
     display: block;
     float: left;
-    margin-left: 10px ;
+    margin-left: 10px;
+    max-width: 65%;
 }
 
-.verMasHome{
+.verMasHome {
     font-weight: bold;
     color: lightgrey;
     width: 50%;
     text-align: center;
     display: block;
-    margin: 30px auto 10px;
+    margin: 50px auto 0;
     background-color: #013369;
     padding: 10px;
 }
-
-.aboutUs{
-    padding: 5px;
-    margin: 50px auto;
-    width: 35%;
-    float: left;
+.verMasHome:hover {
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: crimson;
 }
 
-.aboutUs h2{
+
+.aboutUs {
+    background-color: rgb(35, 39, 48);
+    color: white;
+    text-align: center;
+    padding: 5px;
+    margin: 50px auto;
+    width: 30%;
+    float: right;
+    vertical-align: center !important;
+}
+
+.aboutUs h2 {
     text-align: center;
     padding: 10px;
 }
 
-.aboutUs p{
-    padding: 10px;
+.aboutUs p {
+    text-align: center;
+    padding: 15px;
+}
+
+.textos a{
+    font-size: larger;
+    font-weight: bold;
+    color: rgb(35, 39, 48);
+}
+
+.textos a:hover{
+    text-decoration:none;
+    color: lightgrey;
+}
+
+.textos a:visited{
+    text-decoration:none;
+    color: #013369;
+}
+
+.textos p{
+font-size: medium;
+color: #6b6b6b;
 }
 
 /* ↓↓ PAGINA DE NOTICIA COMPLETA ↓↓ */
-.noticiaCompleta{
+.noticiaCompleta {
     margin: 50px auto;
 }
 
-.imagenNoticiaCompleta{
+.imagenNoticiaCompleta {
     display: block;
     width: 100%;
     padding: 10px;
 }
 
-.imagenNoticiaCompleta img{
+.imagenNoticiaCompleta img {
     display: block;
     width: 100%;
     max-height: 400px;
 }
 
-.noticiaCompleta h1{
+.noticiaCompleta h1 {
     font-weight: bold;
     padding: 10px;
     margin-bottom: 30px;
 }
 
+/* ↓↓ PANTALLA SUBIR FOTO ↓↓ */
+#cajonSubida {
+    width: 60%;
+    padding: 30px;
+    display: block;
+    margin: 5% auto 10%;
+    border: 2px solid rgb(35, 39, 48);
+    background-color: #013369;
+    color: white;
+    font-size: 1.1em;
+}
+.subidaFichero {
+    width: 100%;
+    padding: 10px;
+    margin: 15px auto;
+}
+
+#subirFoto {
+    margin: 30px auto;
+    display: block;
+}
+
+#volverSubirFoto {
+    margin: 50px auto 0;
+    color: #0a001f;
+    background-color: gainsboro;
+    border: 1px solid #0a001f;
+}
+
+#avisoSubida{
+    text-align: center;
+    padding: 10px;
+    color: crimson;
+}
+
+/* ↓↓ INICIO PANEL  ↓↓ */
+
+.periodicoLogo, .usuariosLogo{
+    font-size: 4.5em;
+    display: block;
+    margin: auto auto;
+}
+
+.linkInicioPanel{
+    text-align: center;
+    margin: auto auto;
+    display: block;
+    font-size: 1.2em;
+}
 
 
+#main{
+    position:relative;
+    display:block;
+    margin: 10% auto;
+    width:50%;
+    height:240px;
+    padding:10px;
+}
+#main > div{
+    float:left;
+    margin:10px;
+}
+#d1{
+    width:200px;
+    height:200px;
+}
+
+#d2{
+    width:200px;
+    height:200px;
+}
+
+
+
+/* ↓↓ PAGINA CONTACTO ↓↓ */
+
+.cajas{
+    display: block;
+    margin:10px auto 50px;
+}
+
+#contact{
+    display: block;
+    background:white;
+    color: rgb(35, 39, 48);
+    padding-bottom:30px;
+}
+
+#botonContacto{
+    width: 200px;
+    background-color: #013369;
+    color: white;
+    font-weight: bold;
+}
+
+#botonContacto:hover{
+    width: 200px;
+    background-color: crimson;
+    color: white;
+    font-weight: bold;
+}
+.cajasTextos{
+    margin: 15px auto;
+}
+
+textarea.form-control{
+    height:100px;
+}
+.redesSociales{
+    color: #013369;
+}
+
+.redesSociales:hover{
+    color: crimson;
+}
+
+.contenedor_contacto h2{
+    font-size: 3.5em;
+    padding: 20px;
+}
+.contenedor_contacto p{
+    font-size: 1.1em;
+    padding: 20px;
+}
+
+.cajonContacto{
+    display: block;
+    margin: 40px auto;
+    width: 75%;
+    border: 1px solid black;
+}
 /* ↓↓ MENU PRINCIPAL RESPONSIVE ↓↓ */
 @media (max-width: 700px) {
     #body {
@@ -503,7 +702,7 @@ padding:10px;
 
     .cabecera .contenedor_principal .menu ul .has_child ul {
         display: block;
-        background-color:rgb(35,39,48);
+        background-color: rgb(35, 39, 48);
         position: relative;
         height: auto !important;
     }

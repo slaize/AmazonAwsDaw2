@@ -5,6 +5,7 @@ session_start();
 
 use App\Controller\UsuarioController;
 use App\Controller\NoticiaController;
+use App\Controller\AppController;
 
 // Localizamos la base de la url
 $public = '/cms/public/';
@@ -47,78 +48,23 @@ $_SESSION['home'] = $home;
 $ruta = str_replace($home, '', $_SERVER["REQUEST_URI"]);
 $array_ruta = explode("/", $ruta);
 
-/*
-//Array de la ruta
-$array_ruta = explode("/", $ruta);
-
-switch (count($array_ruta)) {
-
-    case 1:
-        ruta1($array_ruta);
-        break;
-    case 2:
-        ruta2($array_ruta);
-        break;
-    case 3:
-        echo "estoy en panel/noticas/crear, en panel/usuarios/crear,";
-        break;
-    case 4:
-        echo "estoy eneditado, activando y borrando";
-        break;
-    default:
-        echo "Página incorrecta redirijo a la home";
-}
-
-foreach ($array_ruta as $a) {
-
-}
-
-//Saco el controlador
-function ruta1($array_ruta)
-{
-    switch ($array_ruta[0]) {
-        case "":
-            return "";
-        case "panel":
-            return "UsuarioController";
-        case "noticias":
-            return "NoticiaController";
-        default:
-            return "Error";
-    }
-}
-
-// Saco la accion
-function ruta2($array_ruta)
-{
-    // Recupero el controlador
-    $controlador = ruta1($array_ruta);
-
-    switch ($controlador) {
-        case "UsuarioController":
-            return $array_ruta[1];
-        case "NoticiaController":
-            return $array_ruta[1];
-    }
-
-    switch ($array_ruta[1]) {
-        case "":
-            return "";
-        case "panel":
-            return "UsuarioController";
-        case "noticias":
-            return "NoticiaController";
-        default:
-            return "Error";
-    }
-}
-
-*/  // Parte de enrutamiento con switchs
 
 // Array de la ruta.
 $array_ruta = explode('/', $ruta);
 
-if (count($array_ruta) == 4) {
+if (count($array_ruta) == 3 && isset($array_ruta[1]) && $array_ruta[0] == "" && $array_ruta[1] == 'noticias' && isset($array_ruta[2])) {
+
+    switch ($array_ruta[0] . $array_ruta[1]) {
+        case 'noticias':
+            $id = $array_ruta[2];
+            //Instancio el controlador
+            $controller = new AppController;
+            //Le mando el panel de acceso
+            $controller->noticiaCompleta($id);
+            break;
+    }
+
+} else if (count($array_ruta) == 4) {
     switch ($array_ruta[0] . $array_ruta[1]) {
         case "panelusuarios":
             switch ($array_ruta[2]) {
@@ -147,6 +93,7 @@ if (count($array_ruta) == 4) {
                 case "desactivar":
                 case "homeactivar":
                 case "homedesactivar":
+                case "upload":
                     $controller = new NoticiaController;
                     $accion = $array_ruta[2];
                     $id = $array_ruta[3];
@@ -163,45 +110,8 @@ if (count($array_ruta) == 4) {
             //Instancio el controlador
             $controller = new AppController;
             //Le mando el panel de acceso
-            $controller->acceso();
+            $controller->index();
     }
-    /*  if ($array_ruta[0] . $array_ruta[1] == "panelusuarios") {
-          if ($array_ruta[2] == "editar" OR
-              $array_ruta[2] == "borrar" OR
-              $array_ruta[2] == "activar" OR
-              $array_ruta[2] == "desactivar") {
-              $controller = new UsuarioController;
-              $accion = $array_ruta[2];
-              $id = $array_ruta[3];
-              //Llamo a la accion
-              $controller->$accion($id);
-          } else {
-              $controller = new UsuarioController;
-              $controller->index();
-          }
-
-
-      } elseif ($array_ruta[0] . $array_ruta[1] == "panelnoticias") {
-          if ($array_ruta[2] == "editar" OR
-              $array_ruta[2] == "borrar" OR
-              $array_ruta[2] == "activar" OR
-              $array_ruta[2] == "desactivar") {
-              $controller = new NoticiaController;
-              $accion = $array_ruta[2];
-              $id = $array_ruta[3];
-              //Llamo a la accion
-              $controller->$accion($id);
-          } else {
-              $controller = new NoticiaController;
-              $controller->index();
-          }
-
-      } else {
-          //Instancio el controlador
-          $controller = new AppController;
-          //Le mando el panel de acceso
-          $controller->acceso();
-      }*/
 } else {
     //Enrutaminetos
     switch ($ruta) {
@@ -247,13 +157,23 @@ if (count($array_ruta) == 4) {
             //Le mando al método salir
             $controller->crear();
             break;
+
+        case 'noticias':
+            //Instancio el controlador
+            $controller = new AppController;
+            //Le mando el panel de acceso
+            $controller->noticias();
+            break;
+        case 'contacto':
+            //Instancio el controlador
+            $controller = new AppController;
+            //Le mando el panel de acceso
+            $controller->contacto();
+            break;
+
         default : //Instancio el controlador
             $controller = new AppController;
             //Le mando al método salir
             $controller->index();
     }
 }
-
-
-//Llamo al pie
-require("../view/partials/footer.php");

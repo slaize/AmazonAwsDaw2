@@ -20,21 +20,28 @@ require("../view/partials/mensajes.php");
     <?php foreach ($datos as $dato) { ?>
         <ul class="row item">
             <li class="col-3 centro">
-                <a href=""><?php echo $dato->titulo ?></a>
-                <hr>
+                <b><p><?php echo $dato->titulo ?></p></b>
             </li>
             <li class="col-3 centro">
                 <?php $t = strtotime($dato->fecha_alta); ?>
-                <a href=""><?php echo date('d/m/y H:i:s', $t) ?></a>
-                <hr>
+                <p><?php echo date('d/m/y H:i:s', $t) ?></p>
             </li>
             <li class="col-3 centro">
-                <a href=""><?php echo $dato->fecha_publicacion ?></a>
-                <hr>
+                <?php $c = strtotime($dato->fecha_publicacion); ?>
+                <?php $time = ($dato->fecha_publicacion != null) ? date('d/m/y H:i:s', $c) : " "; ?>
+                <p><?php echo $time ?></p>
             </li>
             <li class="col-3">
                 <?php $ruta = $_SESSION['home'] . "panel/noticias/editarN/" . $dato->id ?>
                 <a href="<?php echo $ruta ?>" title="editar"><i class="fas fa-pencil-alt"></i></a>
+
+                <?php
+                $color = ($dato->url != "") ? 'activo' : 'vacia';
+                $texto = ($dato->url != "") ? 'imagen subida' : 'subir imagen';
+                ?>
+                <?php $ruta = $_SESSION['home'] . "panel/noticias/upload/" . $dato->id ?>
+                <a href="<?php echo $ruta ?>" title="<?php echo $texto ?>" class="<?php echo $color ?>"><i
+                            class="far fa-images"></i></a>
 
                 <?php
                 $color = ($dato->home == 1) ? 'activo' : 'inactivo';
@@ -43,7 +50,8 @@ require("../view/partials/mensajes.php");
                 //Ponemos la ruta para activar o descativar los usuarios
                 $ruta = $_SESSION['home'] . "panel/noticias/" . $texto . "/" . $dato->id;
                 ?>
-                <a href="<?php echo $ruta ?>" title="<?php echo $title ?>" class="<?php echo $color ?>"><i class="fas fa-home"></i></i></a>
+                <a href="<?php echo $ruta ?>" title="<?php echo $title ?>" class="<?php echo $color ?>"><i
+                            class="fas fa-home"></i></i></a>
 
                 <?php
                 $color = ($dato->activa == 1) ? 'activo' : 'inactivo';
@@ -57,12 +65,11 @@ require("../view/partials/mensajes.php");
                 <?php $ruta = $_SESSION['home'] . "panel/noticias/borrar/" . $dato->id ?>
                 <a href="<?php echo $ruta ?>" title="borrar" id="borrarUsuario"
                    onclick="return confirm('¿Estás seguro?')"><i class="fas fa-trash"></i></a>
-                <hr>
+
             </li>
+
         </ul>
+        <hr>
     <?php } ?>
 
 </div>
-<script>
-    ocultarFooterPanel();
-</script>

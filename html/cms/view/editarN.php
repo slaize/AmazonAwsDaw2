@@ -15,10 +15,7 @@ require("../view/partials/menu.php");
             <input type="text" class="form-control" name="titulo" id="nombreEditar"
                    value="<?php echo $datos->titulo ?>">
         </div>
-        <!-- <div class="form-group">
-            <label for="exampleInputPassword1">Slug</label>
-            <input type="text" class="form-control" name="slug" id="claveEditar" value="<?php echo $datos->slug ?>">
-        </div> -->
+
         <div class="form-group">
             <label for="exampleInputEmail1">Entradilla</label>
             <textarea class="form-control" rows="2" name="entradilla"
@@ -33,10 +30,12 @@ require("../view/partials/menu.php");
                     theme_advanced_toolbar_location: "top",
                     theme_advanced_toolbar_align: "left",
                     mode: "exact",
-                    elements: "textarea"
+                    elements: "#texto"
                 });
             </script>
+
         </div>
+
         <div class="form-group">
             <label for="exampleInputPassword1">Autor</label>
             <input type="text" class="form-control" name="autor" id="claveEditar" value="<?php echo $datos->autor ?>" disabled>
@@ -48,9 +47,7 @@ require("../view/partials/menu.php");
             <button type="submit" name="guardar" id="guardarEditar" value="Guardar" class="btn btn-primary">
                 Guardar</i></button>
         </div>
+
+
     </form>
 </div>
-
-<script>
-    ocultarFooterPanel();
-</script>

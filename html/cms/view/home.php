@@ -5,10 +5,44 @@ $public = '/cms/public/';
 require("../view/partials/header.php");
 require("../view/partials/menuHome.php");
 ?>
-
     <div class="cien">
         <div class="ochenta">
             <div class="home">
+                <?php foreach ($datos as $dato) { ?>
+                <div class="gridHome">
+                    <div class="imagen">
+                        <?php $imagen = $dato->url; ?>
+                        <?php $imagen = substr($imagen,2); ?>
+                        <?php $res = ($dato->url != null) ? "/cms".$imagen : $public . "img/logo.jpg"; ?>
+                       <img src="<?php echo $res ?>"/>
+                    </div>
+                    <div class="textos">
+                        <?php $ruta = $_SESSION['home'] . "/noticias/" . $dato->id ?>
+                        <a href="<?php echo $ruta ?>"  class="tituloHome"><?php echo $dato->titulo ?></a>
+                        <p class="entradillaHome"><?php echo $dato->entradilla ?></p>
+                    </div>
+                </div>
+                <?php } ?>
+
+                <!-- MOLDE DE LA DISTIBUCION
+                <div class="gridHome">
+                    <div class="imagen">
+                        <img src="<?php echo $public . "img/logo.jpg" ?>">
+                    </div>
+                    <div class="textos">
+                        <h2>Titulo</h2>
+                        <p>Entradilla</p>
+                    </div>
+                </div>
+                <div class="gridHome">
+                    <div class="imagen">
+                        <img src="<?php echo $public . "img/logo.jpg" ?>">
+                    </div>
+                    <div class="textos">
+                        <h2>Titulo</h2>
+                        <p>Entradilla</p>
+                    </div>
+                </div>
                 <div class="gridHome">
                     <div class="imagen">
                         <img src="<?php echo $public . "img/logo.jpg" ?>">
@@ -28,59 +62,23 @@ require("../view/partials/menuHome.php");
                         <p>Entradilla</p>
                     </div>
                 </div>
-                <div class="gridHome">
-                    <div class="imagen">
-                        <img src="<?php echo $public . "img/logo.jpg" ?>">
-                    </div>
-                    <div class="textos">
-                        <h2>Titulo</h2>
-                        <p>Entradilla</p>
-                    </div>
-                </div>
-                <div class="gridHome">
-                    <div class="imagen">
-                        <img src="<?php echo $public . "img/logo.jpg" ?>">
-                    </div>
-                    <div class="textos">
-                        <h2>Titulo</h2>
-                        <p>Entradilla</p>
-                    </div>
-                </div>
+                -->
 
-                <div class="gridHome">
-                    <div class="imagen">
-                        <img src="<?php echo $public . "img/logo.jpg" ?>">
-                    </div>
-                    <div class="textos">
-                        <h2>Titulo</h2>
-                        <p>Entradilla</p>
-                    </div>
-                </div>
-
-                <a href="" class="verMasHome">Ver más</a>
+                <a href="<?php echo $_SESSION['home'] . "noticias" ?>" class="verMasHome">Ver más <i class="far fa-plus-square"></i></a>
 
             </div>
             <div class="aboutUs">
-                <h2>About us</h2>
+                <h2>Sobre mí</h2>
                 <img id="logo" src="<?php echo $public . "img/logo.jpg" ?>" alt="logo">
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula lorem sed ante iaculis
-                    commodo. Fusce in nibh ac diam luctus tempus sed vitae orci. Nam pulvinar orci eu sagittis ultrices.
-                    Pellentesque sit amet turpis et libero luctus lacinia. Morbi at magna at justo imperdiet vehicula.
-                    Phasellus semper tortor ligula, a rhoncus ligula pellentesque vitae. In blandit, felis sed
-                    ullamcorper bibendum, purus ante luctus turpis, vel posuere lectus diam nec ex. Morbi lobortis felis
-                    non fringilla consequat. Pellentesque lobortis elementum erat, id semper lorem congue non. Aliquam
-                    elementum turpis vel urna aliquam, id blandit quam aliquam. Mauris efficitur ante rutrum nisl
-                    efficitur semper. Phasellus eu facilisis urna. Phasellus quis ipsum sagittis, mollis eros non,
-                    sodales elit. Proin porta ornare eros, sit amet dapibus risus. Curabitur et nisi diam.</p>
-                <p> Sed id volutpat odio. In ultrices, sapien non maximus gravida, enim ex dictum neque, vel luctus
-                    risus nibh eu mi. In viverra elit pellentesque lorem pellentesque, id aliquet lectus suscipit.
-                    Integer est ante, tincidunt mattis metus eu, venenatis ultrices arcu. Aenean leo leo, pellentesque
-                    in velit vitae, semper venenatis felis. Donec feugiat ac urna vitae sodales. Vivamus eleifend
-                    facilisis ullamcorper.</p>
-                </p>
+
+                <p> Bienvenido a mi web, con ella esperaba realizar un proyecto que me hacia mucha ilusion sobre un deporte que no
+                es muy popular aquí como es el fútbol americano, la página esta en constante mejora e
+                ira actualizandose poco a poco con las principales noticias del mundo NFL.</p>
+
             </div>
         </div>
     </div>
 
 <?php
-require("./partials/footerHome.php");
+require("../view/partials/footerHome.php");
+?>

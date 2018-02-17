@@ -24,7 +24,7 @@
     <script type="text/javascript">
         tinymce.init({
             /* replace textarea having class .tinymce with tinymce editor */
-            selector: "textarea",
+            selector: "#texto",
 
             /* theme of the editor */
             theme: "modern",

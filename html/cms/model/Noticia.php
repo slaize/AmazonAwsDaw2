@@ -16,6 +16,7 @@ class Noticia
     var $autor;
     var $borrado;
     var $home;
+    var $url;
 
     //Metodo constructor nuevo
     function __construct($data){
@@ -31,5 +32,6 @@ class Noticia
         $this->autor = $data->autor;
         $this->borrado = $data->borrado;
         $this->home = $data->home;
+        $this->url = $data->url;
     }
 }

@@ -58,20 +58,24 @@ class UsuarioController
         }
         // Le paso los datos a la vista
         $this->view->vista($vista, $datos);
+
     }
 
-    function compruebaUsuario($usuario, $contrasena)
-    {
+    function compruebaUsuario($usuario, $contrasena){
         //Realizo la consulta con OBJ
-        $resultado = $this->db->query("SELECT * FROM usuarios where usuario='" . $usuario . "'");
+        $resultado = $this->db->query("SELECT * FROM usuarios where usuario='" . $usuario . "' AND activo=1");
         //Asigno la consulta a variable
         $data = $resultado->fetch(\PDO::FETCH_OBJ);
 
         // Comprobador de contraseñas encriptadas con crypt
         if ($data && hash_equals($data->clave, crypt($contrasena, $data->clave))) {
-            //Añado el nombre de usuario a la session
+            //Añado el nombre de usuario y los permisos a la session
             $_SESSION['usuario'] = $data->usuario;
             $_SESSION['nombre_completo'] = $data->nombre_completo;
+            $_SESSION['usuarios'] = $data->usuarios;
+            $momento = time();
+            $fecha = date($momento);
+            $this->db->exec("UPDATE usuarios SET fecha_acceso=" . $fecha . " where usuario='" . $usuario . "'");
             return 1;
         } else {
             // return
@@ -83,8 +87,8 @@ class UsuarioController
 
     function index()
     {
-        //Inicio el objeto usuarios
-        // $usuarios = new \stdClass();
+        // Compruebo permisos
+        $this->permisos();
 
         $resultado = $this->db->query('SELECT * FROM usuarios');
 
@@ -102,15 +106,17 @@ class UsuarioController
         //Borro el nombre de usuario a la session
         $_SESSION['usuario'] = "";
         $_SESSION['nombre_completo'] = "";
+        $_SESSION['usuarios'] = "";
 
         //Le redirijo al panel
         header("Location: " . $_SESSION['home'] . "panel");
         $this->acceso();
+
     }
 
     function crear()
     {
-
+        $this->permisos();
         //Create user
         //Insert
         $nombre = "usuario" . rand(1000, 99999);
@@ -136,6 +142,7 @@ class UsuarioController
 
     function activar($id)
     {
+        $this->permisos();
         if ($id) {
             //Update
             $registros = $this->db->exec("UPDATE usuarios SET activo=1 WHERE id=" . $id . "");
@@ -162,6 +169,7 @@ class UsuarioController
 
     function desactivar($id)
     {
+        $this->permisos();
         if ($id) {
             //Update
             $registros = $this->db->exec("UPDATE usuarios SET activo=0 WHERE id=" . $id . "");
@@ -188,6 +196,7 @@ class UsuarioController
 
     function borrar($id)
     {
+        $this->permisos();
         if ($id) {
             //Update
             $registros = $this->db->exec("DELETE FROM usuarios WHERE id=" . $id . "");
@@ -214,17 +223,20 @@ class UsuarioController
 
     function editar($id){
         if ($id) {
+            $this->permisos();
             if (isset($_POST['guardar']) && $_POST['guardar'] == "Guardar") {
 
                 //Recojo los valores de los inputs de editar
                 $usuario = filter_input(0, 'usuario', FILTER_SANITIZE_SPECIAL_CHARS);
                 $nombre_completo = filter_input(0, 'nombre', FILTER_SANITIZE_STRING);
+                $clave = crypt(filter_input(0, 'clave', FILTER_SANITIZE_STRING));
                 $usuarios = (filter_input(0, 'usuarios', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
                 $noticias = (filter_input(0, 'noticias', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
 
                 //Guardo en la base de datos
                 $this->db->beginTransaction();
                 $this->db->exec("UPDATE usuarios SET usuario='".$usuario."' WHERE id=" . $id . "");
+                $this->db->exec("UPDATE usuarios SET clave='".$clave."' WHERE id=" . $id . "");
                 $this->db->exec("UPDATE usuarios SET usuarios='".$usuarios."' WHERE id=" . $id . "");
                 $this->db->exec("UPDATE usuarios SET noticias='".$noticias."' WHERE id=" . $id . "");
                 $this->db->exec("UPDATE usuarios SET nombre_completo='".$nombre_completo."' WHERE id=" . $id . "");
@@ -259,5 +271,16 @@ class UsuarioController
             header("Location: " . $_SESSION['home'] . "panel/usuarios");
         }
 
+    }
+
+    function permisos(){
+        if(!isset($_SESSION['usuarios']) || $_SESSION['usuarios'] != 1){
+            $mensaje[] = ['tipo' => 'warning',
+                'texto' => "Usuario no autorizado"
+            ];
+            $_SESSION['mensajes'] = $mensaje;
+            //Le redirijo al panel
+            header("Location: " . $_SESSION['home'] . "panel");
+        }
     }
 }

@@ -9,11 +9,19 @@ require("../view/partials/menuHome.php");
     <div class="cien">
         <div class="ochenta">
             <div class="noticiaCompleta">
+                <?php foreach ($datos as $dato) { ?>
                 <div class="imagenNoticiaCompleta">
-                    <img src="<?php echo $public . "img/logo.jpg" ?>">
+                    <?php $imagen = $dato->url; ?>
+                    <?php $imagen = substr($imagen, 2); ?>
+                    <?php $res = ($dato->url != null) ? "/cms" . $imagen : "" ?>
+                    <img src="<?php echo $res ?>">
                 </div>
 
-                <h1>TITULO</h1>
+                <h1><?php echo $dato->titulo ?></h1>
+                <p><?php echo $dato->texto ?></p>
+
+
+                <!--
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a sollicitudin massa, vitae ornare
                     turpis. Phasellus sed tempus turpis, eu vestibulum est. Praesent ligula lectus, porta ac lacus
                     pellentesque, ornare maximus nibh. Quisque id sapien non eros lacinia rhoncus. Maecenas blandit
@@ -49,11 +57,12 @@ require("../view/partials/menuHome.php");
                     nisi sed mattis laoreet, justo lacus sagittis eros, id cursus est est nec est. In hac habitasse
                     platea dictumst. Phasellus nec sapien velit. Phasellus congue auctor odio, eu gravida ligula
                     vulputate sit amet. Proin ut tempor justo. Donec convallis vel mi sed malesuada. Vestibulum
-                    fermentum est quis sodales lobortis. </p>
+                    fermentum est quis sodales lobortis. </p> -->
 
             </div>
+    <?php } ?>
         </div>
     </div>
 
 <?php
-require("./partials/footerHome.php");
+require("../view/partials/footerHome.php");

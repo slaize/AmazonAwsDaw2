@@ -44,7 +44,3 @@ require("../view/partials/menu.php");
         </div>
     </form>
 </div>
-
-<script>
-    ocultarFooterPanel();
-</script>
