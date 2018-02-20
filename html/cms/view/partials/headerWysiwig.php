@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Pagina sin asignar .... aún</title>
-
+    <?php $rutaTitulo = str_replace($_SESSION['home'], '', $_SERVER["REQUEST_URI"]) ?>
+    <?php $title = ($rutaTitulo == "" || $rutaTitulo == "/cms/public/" || $rutaTitulo == "/cms/public/index.php") ? 'Página principal' : $rutaTitulo ?>
+    <title>No Huddle - <?php echo ucfirst($title) ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"

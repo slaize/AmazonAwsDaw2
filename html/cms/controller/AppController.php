@@ -50,10 +50,10 @@ class AppController
         $this->view->vista("listadoNoticias", $noticias);
     }
 
-    function noticiaCompleta($id)
+    function noticiaCompleta($slug)
     {
-        if ($id) {
-            $resultado = $this->db->query("SELECT * FROM noticias WHERE id=$id LIMIT 1");
+        if ($slug) {
+            $resultado = $this->db->query("SELECT * FROM noticias WHERE slug='" .$slug . "' LIMIT 1");
 
             $noticias = [];
             while ($datos = $resultado->fetch(\PDO::FETCH_OBJ)) {

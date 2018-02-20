@@ -28,6 +28,7 @@ class NoticiaController
 
     function index()
     {
+        $this->permisos();
         //Inicio el objeto usuarios
         $noticias = [];
 
@@ -43,7 +44,6 @@ class NoticiaController
 
     function crear()
     {
-
         //Insert
         $nombre = "noticia" . rand(0, 999999);
         $slug = "slug" . rand(0, 999999);
@@ -317,6 +317,17 @@ class NoticiaController
             } else {
                 $this->view->vista("upload", "");
             }
+        }
+    }
+
+    function permisos(){
+        if(!isset($_SESSION['noticias']) || $_SESSION['noticias'] != 1){
+            $mensaje[] = ['tipo' => 'warning',
+                'texto' => "Usuario no autorizado"
+            ];
+            $_SESSION['mensajes'] = $mensaje;
+            //Le redirijo al panel
+            header("Location: " . $_SESSION['home'] . "panel");
         }
     }
 }

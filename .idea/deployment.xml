@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="Amazon AWS" showEqualInSync="true">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="Amazon AWS" showEqualInSync="true" showNewOnTargetInSync="false">
     <serverData>
       <paths name="Amazon AWS">
         <serverdata>
           <mappings>
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/html/cms/public/js/tinymce" />
+            <excludedPath local="true" path="$PROJECT_DIR$/html/cms_2/public/js/tinymce" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

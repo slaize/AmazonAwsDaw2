@@ -73,6 +73,7 @@ class UsuarioController
             $_SESSION['usuario'] = $data->usuario;
             $_SESSION['nombre_completo'] = $data->nombre_completo;
             $_SESSION['usuarios'] = $data->usuarios;
+            $_SESSION['noticias'] = $data->noticias;
             $momento = time();
             $fecha = date($momento);
             $this->db->exec("UPDATE usuarios SET fecha_acceso=" . $fecha . " where usuario='" . $usuario . "'");
@@ -107,6 +108,7 @@ class UsuarioController
         $_SESSION['usuario'] = "";
         $_SESSION['nombre_completo'] = "";
         $_SESSION['usuarios'] = "";
+        $_SESSION['noticias'] = "";
 
         //Le redirijo al panel
         header("Location: " . $_SESSION['home'] . "panel");

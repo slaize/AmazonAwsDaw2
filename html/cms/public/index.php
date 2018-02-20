@@ -46,24 +46,21 @@ $_SESSION['home'] = $home;
 
 
 $ruta = str_replace($home, '', $_SERVER["REQUEST_URI"]);
-$array_ruta = explode("/", $ruta);
 
 
 // Array de la ruta.
 $array_ruta = explode('/', $ruta);
 
-if (count($array_ruta) == 3 && isset($array_ruta[1]) && $array_ruta[0] == "" && $array_ruta[1] == 'noticias' && isset($array_ruta[2])) {
-
-    switch ($array_ruta[0] . $array_ruta[1]) {
+if (count($array_ruta) == 2 && isset($array_ruta[1]) && $array_ruta[0] == 'noticias' && isset($array_ruta[1])) {
+    switch ($array_ruta[0]) {
         case 'noticias':
-            $id = $array_ruta[2];
+            $slug = $array_ruta[1];
             //Instancio el controlador
             $controller = new AppController;
             //Le mando el panel de acceso
-            $controller->noticiaCompleta($id);
+            $controller->noticiaCompleta($slug);
             break;
     }
-
 } else if (count($array_ruta) == 4) {
     switch ($array_ruta[0] . $array_ruta[1]) {
         case "panelusuarios":

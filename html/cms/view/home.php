@@ -17,7 +17,7 @@ require("../view/partials/menuHome.php");
                        <img src="<?php echo $res ?>"/>
                     </div>
                     <div class="textos">
-                        <?php $ruta = $_SESSION['home'] . "/noticias/" . $dato->id ?>
+                        <?php $ruta = $_SESSION['home']."noticias/" . $dato->slug?>
                         <a href="<?php echo $ruta ?>"  class="tituloHome"><?php echo $dato->titulo ?></a>
                         <p class="entradillaHome"><?php echo $dato->entradilla ?></p>
                     </div>
