@@ -13,15 +13,15 @@ require("../view/partials/menuHome.php");
 
                 <?php foreach ($datos as $dato) { ?>
                     <div class="gridListado">
-                        <div class="imagen">
+                        <?php $ruta = $_SESSION['home']."noticias/" . $dato->slug?>
+                        <a  href="<?php echo $ruta ?>"><div class="imagen">
                             <?php $imagen = $dato->url; ?>
                             <?php $imagen = substr($imagen, 2); ?>
                             <?php $res = ($dato->url != null) ? "/cms" . $imagen : $public . "img/logo.jpg"; ?>
                             <img src="<?php echo $res ?>">
-                        </div>
+                            </div></a>
                         <div class="textosListado">
-                            <?php $ruta = $_SESSION['home']."noticias/" . $dato->slug?>
-                            <a href="<?php echo $ruta ?>"  class="tituloHome"><?php echo $dato->titulo ?></a>
+                            <a class="tituloHome" href="<?php echo $ruta ?>"  ><?php echo $dato->titulo ?></a>
                             <p><?php echo $dato->entradilla ?></p>
                         </div>
                     </div>

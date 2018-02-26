@@ -8,7 +8,7 @@ require("../view/partials/menuHome.php");
     <div class="cien">
         <section id="contact" class="content-section text-center cajonContacto">
             <div class="container contenedor_contacto">
-                <h2><i class="fas fa-football-ball"></i> Contactanos</h2>
+                <h2><i class="fas fa-football-ball fa-spin"></i> Contactanos</h2>
                 <p>Si necesitas contactar con nostros puedes usar el formulario que hay justo debajo o hacerlo a traves
                     de
                     nuestras redes sociales</p>

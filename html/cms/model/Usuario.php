@@ -3,7 +3,7 @@ namespace App\Model;  //App sería el nombre del proyecto y Model la carpeta que
 
 class Usuario
 {
-    // Variables o atributos
+    // 🡇 Variables o atributos
     var $id;
     var $usuario;
     var $clave;
@@ -12,7 +12,7 @@ class Usuario
     var $usuarios;
     var $noticias;
 
-    //Metodo constructor nuevo
+    // 🡇 Metodo constructor nuevo
     function __construct($data){
         $this->id = $data->id;
         $this->usuario = $data->usuario;

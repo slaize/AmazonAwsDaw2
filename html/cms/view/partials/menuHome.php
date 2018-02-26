@@ -1,5 +1,7 @@
 <div id="logoPanel">
+    <a href="<?php echo $_SESSION['home'] ?>">
     <img id="logo" src="<?php echo $public . "img/logo.jpg" ?>" alt="logo">
+    </a>
 </div>
 <div id="transparente"></div>
 <section class="cabecera">

@@ -3,6 +3,31 @@ body {
     margin: 0;
 }
 
+.scrollTop {
+    position: fixed;
+    right: 3%;
+    bottom: 110px;
+    background-color: #013369;
+    padding: 10px;
+    opacity: 0;
+    transition: all 0.4s ease-in-out 0s;
+}
+.scrollTop:hover {
+    background-color: crimson;
+    cursor: pointer;
+}
+
+.scrollTop a {
+    font-size: 14px;
+    color: #fff;
+}
+
+.scrollTop a:hover {
+    font-size: 24px;
+    color: #fff;
+    margin-top: 2px;
+}
+
 h1 {
     text-align: center;
     margin: 5px auto 0;
@@ -63,6 +88,7 @@ footer p {
     text-align: center;
     font-size: 0.9em;
 }
+
 
 /* ↓↓ MENU PANEL DE ADMIN ↓↓ */
 .bg-primary {
@@ -323,14 +349,18 @@ footer p {
 }
 
 /* ↓↓ FOOTER PARTE CLIENTE ↓↓ */
-.footerHome {
+.noticiasPanel{
+    height: 100%;
+    overflow-y: hidden;
+}
+.footerHome{
     width: 100%;
     background-color: rgb(35, 39, 48);
     color: white;
-    position: inherit;
     display: block;
     margin-top:0;
     bottom: 0;
+    position: relative;
 }
 
 .footerHome a {
@@ -372,22 +402,21 @@ footer p {
     width: 49%;
     display: block;
     float: left;
-    margin-bottom: 50px;
+    margin-bottom:75px;
     max-height: 600px;
 }
 
 .gridListado img {
     width: 95%;
     display: block;
-    margin: 0 auto 15px;
-    max-height: 250px;
+    margin: 0 auto 30px;
+    max-height: 258px;
     float: left;
 }
 
-.textosListado {
-    float: left;
+.textosListado{
     display: block;
-    max-width: 95%;
+    max-width: 97%;
     max-height: 400px;
 }
 
@@ -421,6 +450,9 @@ footer p {
     height: auto;
 }
 
+.tituloHome:visited:hover{
+    color: lightgrey;
+}
 .gridHome {
     overflow: hidden;
     padding: 5px;

@@ -8,7 +8,7 @@ class DbHelper{
 
     function __construct()
     {
-        //Conexión con control de errores
+        // 🡇 Conexión con control de errores
         $opciones = [\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"];
         try {
             $this->db = new \PDO('mysql:host=localhost;dbname=cms', 'cms', 'toor', $opciones);

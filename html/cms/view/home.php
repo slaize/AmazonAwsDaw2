@@ -10,59 +10,19 @@ require("../view/partials/menuHome.php");
             <div class="home">
                 <?php foreach ($datos as $dato) { ?>
                 <div class="gridHome">
-                    <div class="imagen">
+                    <?php $ruta = $_SESSION['home']."noticias/" . $dato->slug?>
+                    <a href="<?php echo $ruta ?>" ><div class="imagen">
                         <?php $imagen = $dato->url; ?>
                         <?php $imagen = substr($imagen,2); ?>
                         <?php $res = ($dato->url != null) ? "/cms".$imagen : $public . "img/logo.jpg"; ?>
                        <img src="<?php echo $res ?>"/>
-                    </div>
+                    </div></a>
                     <div class="textos">
-                        <?php $ruta = $_SESSION['home']."noticias/" . $dato->slug?>
                         <a href="<?php echo $ruta ?>"  class="tituloHome"><?php echo $dato->titulo ?></a>
                         <p class="entradillaHome"><?php echo $dato->entradilla ?></p>
                     </div>
                 </div>
                 <?php } ?>
-
-                <!-- MOLDE DE LA DISTIBUCION
-                <div class="gridHome">
-                    <div class="imagen">
-                        <img src="<?php echo $public . "img/logo.jpg" ?>">
-                    </div>
-                    <div class="textos">
-                        <h2>Titulo</h2>
-                        <p>Entradilla</p>
-                    </div>
-                </div>
-                <div class="gridHome">
-                    <div class="imagen">
-                        <img src="<?php echo $public . "img/logo.jpg" ?>">
-                    </div>
-                    <div class="textos">
-                        <h2>Titulo</h2>
-                        <p>Entradilla</p>
-                    </div>
-                </div>
-                <div class="gridHome">
-                    <div class="imagen">
-                        <img src="<?php echo $public . "img/logo.jpg" ?>">
-                    </div>
-                    <div class="textos">
-                        <h2>Titulo</h2>
-                        <p>Entradilla</p>
-                    </div>
-                </div>
-
-                <div class="gridHome">
-                    <div class="imagen">
-                        <img src="<?php echo $public . "img/logo.jpg" ?>">
-                    </div>
-                    <div class="textos">
-                        <h2>Titulo</h2>
-                        <p>Entradilla</p>
-                    </div>
-                </div>
-                -->
 
                 <a href="<?php echo $_SESSION['home'] . "noticias" ?>" class="verMasHome">Ver más <i class="far fa-plus-square"></i></a>
 

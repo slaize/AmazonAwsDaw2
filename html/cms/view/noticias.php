@@ -8,6 +8,7 @@ require("../view/partials/menu.php");
 //Llamo a los mensajes
 require("../view/partials/mensajes.php");
 ?>
+<div class="noticiasPanel">
 <a id="botonNuevaNoticia" class="btn btn-primary" href="<?php echo $_SESSION['home'] ?>panel/noticias/crear"
    role="button">Añadir noticias <i class="fas fa-plus"></i></a>
 <div class="content_section listadoNoticias">
@@ -73,3 +74,5 @@ require("../view/partials/mensajes.php");
     <?php } ?>
 
 </div>
+<?php
+?>
