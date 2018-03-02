@@ -243,10 +243,10 @@ class NoticiaController
             // 🡇 Si se ha pulsado el boton de guardar y en el post recibe la palabla guardar del boton
             if (isset($_POST['guardar']) && $_POST['guardar'] == "Guardar") {
 
-                // 🡇 Recojo los valores de los inputs de editar
+                // 🡇 Recojo los valores de los inputs de editar filtrados y saneados para evitar inyecciones de codigo
                 $titulo = filter_input(0, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
-                $entradilla = filter_input(0, 'entradilla');
-                $texto = filter_input(0, 'texto');
+                $entradilla = filter_input(0, 'entradilla', FILTER_SANITIZE_SPECIAL_CHARS);
+                $texto = filter_input(0, 'texto', FILTER_SANITIZE_SPECIAL_CHARS);
                 $autor = filter_input(0, 'autor', FILTER_SANITIZE_SPECIAL_CHARS);
                 $fecha_mod = date("Y-m-d H:i:s");
 

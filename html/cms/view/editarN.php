@@ -38,7 +38,7 @@ require("../view/partials/menu.php");
 
         <div class="form-group">
             <label for="exampleInputPassword1">Autor</label>
-            <input type="text" class="form-control" name="autor" id="claveEditar" value="<?php echo $datos->autor ?>" disabled>
+            <input type="text" class="form-control" name="autor" id="claveEditar" value="<?php echo $_SESSION['nombre_completo'] ?>" disabled>
         </div>
 
         <div id="botonesEditar">

@@ -10,21 +10,26 @@ require("../view/partials/menuHome.php");
         <div class="ochenta">
             <div class="noticiaCompleta">
                 <?php foreach ($datos as $dato) { ?>
-                <div class="imagenNoticiaCompleta">
-                    <?php $imagen = $dato->url; ?>
-                    <?php $imagen = substr($imagen, 2); ?>
-                    <?php $res = ($dato->url != null) ? "/cms" . $imagen : "" ?>
-                    <img src="<?php echo $res ?>">
-                </div>
+                    <div class="imagenNoticiaCompleta">
+                        <?php $imagen = $dato->url; ?>
+                        <?php $imagen = substr($imagen, 2); ?>
+                        <?php $res = ($dato->url != null) ? "/cms" . $imagen : "" ?>
+                        <img src="<?php echo $res ?>">
+                    </div>
+                    <div class="contenidoNoticiaCompleta">
+                        <div class="tituloNoticia">
+                            <h1><?php echo $dato->titulo ?></h1>
+                        </div>
+                        <div class="contenidoNoticia">
+                            <p><?php echo html_entity_decode( $dato->texto) ?></p> <!-- 🠴 Decodifico el texto filtrado en la BBDD -->
+                        </div>
+                    </div>
 
-                <h1><?php echo $dato->titulo ?></h1>
-                <p><?php echo $dato->texto ?></p>
-
+                <?php } ?>
             </div>
-    <?php } ?>
-        </div>
-        <div id="stop" class="scrollTop">
-            <span><a href=""><i class="fas fa-angle-up"></i></a></span>
+            <div id="stop" class="scrollTop">
+                <span><a href=""><i class="fas fa-angle-up"></i></a></span>
+            </div>
         </div>
     </div>
 
